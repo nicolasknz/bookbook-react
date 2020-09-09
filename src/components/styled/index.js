@@ -1,3 +1,5 @@
+// Chamar dentro da pasta criada: import styled from "styled-components";
+
 //Example:
 //import StyledDiv from "./styled-div";
 
@@ -5,4 +7,3 @@
 
 
 //Criar Pasta Ex: styled-div, styled-p
-// Chamar: import styled from "styled-components";
