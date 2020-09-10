@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { Button } from 'antd';
+
 import * as Styled from './styles'
 import { SearchOutlined } from '@ant-design/icons';
 import bookNotFound from '../../assets/img/book-not-found.jpg'
@@ -14,21 +14,21 @@ const BookSearcher = () => {
             .then((res) => {
                 setBooks(res.data.items)
             })
+            .catch((err) => { console.log(err) })
     }
     return (
         <Styled.MainWrapper>
             <Styled.Form onSubmit={handleSubmit}>
                 <div>
-                    <input placeholder="Nome do livro" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <input placeholder="Buscar livro" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <Styled.Button><SearchOutlined /></Styled.Button>
                 </div>
-                <div >
-                    <Button type="primary" icon={<SearchOutlined />} htmlType="submit">Pesquisar</Button>
-                </div>
+
             </Styled.Form>
             <Styled.CardsWrapper>
                 {books && books.map((book) => {
                     return (
-                        <Styled.BookCard>
+                        <Styled.BookCard key={book.id}>
                             <img alt="img"
                                 src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound}
                             />
