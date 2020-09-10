@@ -1,0 +1,17 @@
+.modified-item {
+  border-bottom: 2px solid transparent !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  font-size: 13pt;
+  padding: 5px 10px !important;
+}
+
+.modified-item:hover {
+  border-bottom: 2px solid #ffffff !important;
+}
+
+.icon {
+  font-size: 15pt !important;
+  margin-right: 8px;
+}
+
