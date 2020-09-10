@@ -1,30 +1,13 @@
 import styled from 'styled-components'
-import { Card } from 'antd'
 
-export const BookCard = styled(Card)`
-    width:130px;
-    margin:10px;
-
-.ant-card-meta-title {
-    white-space:normal;
-    font-size:10px;
-    font-weight:bold;
-}
-.ant-card-meta-description {
-    font-size:13px;
-}
-`;
-
-export const BookMeta = styled(Card.Meta)`
-    min-height:60px;
-    width:100px;
-`;
 
 export const CardsWrapper = styled.div`
     display:flex;
+    align-items:center;
     margin: 0;
     width: 65%;
     flex-wrap: wrap;
+    margin-top:40px;
 `;
 
 export const MainWrapper = styled.div`
@@ -41,3 +24,40 @@ export const Form = styled.form`
         margin:10px
     }
 `;
+
+export const BookCard = styled.div`
+    display:flex;
+    width:33%;
+    margin-bottom:40px;
+    
+    img {
+        min-width:128px;
+        width: 128px;
+        height:182px;
+        border-radius:3px;
+        box-shadow: -1px 6px 18px 1px rgba(0,0,0,0.58);
+    }
+    strong {
+        font-weight:1000;
+        font-size:15px;
+        letter-spacing:0.02rem;
+    }
+    span {
+        font-size:13px;
+        color:#b7b7b7;
+    }
+    .meta-info {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        margin:10px;
+    }
+
+    @media (max-width:1200px) {
+        width: 50%;
+    } 
+    @media (max-width: 768px){
+        width: 100%;
+    }
+`;
+

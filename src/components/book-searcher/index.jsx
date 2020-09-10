@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Button } from 'antd';
 import * as Styled from './styles'
@@ -8,7 +8,6 @@ import bookNotFound from '../../assets/img/book-not-found.jpg'
 const BookSearcher = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const [books, setBooks] = useState([])
-
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
@@ -16,7 +15,6 @@ const BookSearcher = () => {
                 setBooks(res.data.items)
             })
     }
-
     return (
         <Styled.MainWrapper>
             <Styled.Form onSubmit={handleSubmit}>
@@ -27,25 +25,17 @@ const BookSearcher = () => {
                     <Button type="primary" icon={<SearchOutlined />} htmlType="submit">Pesquisar</Button>
                 </div>
             </Styled.Form>
-
             <Styled.CardsWrapper>
                 {books && books.map((book) => {
-                    console.log(book)
                     return (
-
-                        <Styled.BookCard
-                            cover={
-                                <img
-                                    alt="example"
-                                    src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound}
-                                />
-                            }
-                        >
-                            <Styled.BookMeta
-
-                                title={book.volumeInfo.title}
-                                description={book.volumeInfo.authors}
+                        <Styled.BookCard>
+                            <img alt="img"
+                                src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound}
                             />
+                            <div className="meta-info">
+                                <strong>{book.volumeInfo.title}</strong>
+                                {book.volumeInfo.authors ? book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>) : <span>Autor Desconhecido</span>}
+                            </div>
                         </Styled.BookCard>
                     )
                 })}
