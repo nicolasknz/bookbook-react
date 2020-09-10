@@ -1,4 +1,3 @@
-
 /*
   Bruno - 10/09/20 (concluído)
   Tela de Login:
@@ -6,7 +5,6 @@
     -Fazer comunicação com API 
     -Salvar o token autenticado
 */
-
 
 import React, { useState } from "react";
 
@@ -18,8 +16,14 @@ import { login } from "../../redux/actions";
 
 import Main from "../../components/defaultPage/main";
 
-import { Container } from "../../components/styled";
-import { LoginBox, StyledButton, Title, LogoLogin, ImageBox } from "./styles";
+import {
+  LoginBox,
+  StyledButton,
+  Title,
+  LogoLogin,
+  ImageBox,
+  StyledContainer,
+} from "./styles";
 import { Row, Col, Form, Input } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import logo from "../../assets/img/logo_com_transparencia.png";
@@ -29,7 +33,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
-  
+
   const logingIn = (data) => {
     const toAuthenticate = "https://ka-users-api.herokuapp.com/authenticate";
     axios
@@ -50,14 +54,14 @@ const Login = () => {
   return (
     <>
       <Main>
-        <Container>
+        <StyledContainer>
           <Row>
-            <Col span={12}>
+            <Col lg={12} sm={24} xs={24}>
               <ImageBox>
                 <LogoLogin src={logo} />
               </ImageBox>
             </Col>
-            <Col span={12}>
+            <Col lg={12} sm={24} xs={24}>
               <LoginBox>
                 <Form onFinish={logingIn}>
                   <Form.Item>
@@ -96,7 +100,7 @@ const Login = () => {
               </LoginBox>
             </Col>
           </Row>
-        </Container>
+        </StyledContainer>
       </Main>
     </>
   );

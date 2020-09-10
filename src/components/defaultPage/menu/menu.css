@@ -6,12 +6,18 @@
   padding: 5px 10px !important;
 }
 
-.modified-item:hover {
-  border-bottom: 2px solid #ffffff !important;
-}
-
 .icon {
   font-size: 15pt !important;
   margin-right: 8px;
 }
 
+@media (max-width: 480px) {
+  .modified-item {
+    font-size: 12pt;
+  }
+
+  .icon {
+    font-size: 12pt !important;
+  }
+  
+}

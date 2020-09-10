@@ -13,22 +13,26 @@ const TopBar = () => {
     <>
       <StyledMenu mode="horizontal">
         <Row>
-          <Col span={8}>
+          <Col lg={8} sm={4} xs={8}>
             <LogoMenu src={logo} />
           </Col>
-          <Col span={12}></Col>
+          <Col lg={12} sm={12} xs={1}></Col>
+          <Col lg={2} sm={4} xs={6}>
             <Menu.Item
               className="modified-item"
               icon={<UserOutlined className="icon" />}
             >
               Login
-            </Menu.Item>      
+            </Menu.Item>
+          </Col>
+          <Col lg={2} sm={2} xs={6}>
             <Menu.Item
               className="modified-item"
               icon={<UsergroupAddOutlined className="icon" />}
             >
               Cadastrar
             </Menu.Item>
+          </Col>
         </Row>
       </StyledMenu>
     </>
