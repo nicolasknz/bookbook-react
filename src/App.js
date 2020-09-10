@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+
+import Timeline from './pages/timeline';
 
 const App = () => {
   return (
     <>
-      <h1> Book Book </h1>
+      <Timeline />
     </>
   );
 };

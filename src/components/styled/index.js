@@ -1,9 +1,4 @@
-// Chamar dentro da pasta criada: import styled from "styled-components";
+import { StyledCard } from './styled-card';
+import { StyledTimeline } from './styled-timeline';
 
-//Example:
-//import StyledDiv from "./styled-div";
-
-//export { StyledDiv };
-
-
-//Criar Pasta Ex: styled-div, styled-p
+export { StyledCard, StyledTimeline };

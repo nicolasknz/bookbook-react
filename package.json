@@ -25,7 +25,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "universe/web",
+    "rules": {
+      "react/no-did-mount-set-state": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -38,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint-config-universe": "^4.0.0",
+    "prettier": "^2.1.1",
+    "typescript": "^4.0.2"
   }
 }
