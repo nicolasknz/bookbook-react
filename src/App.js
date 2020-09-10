@@ -1,11 +1,12 @@
 import React from "react";
-import BookSearcher from './components/book-searcher'
+import Home from './pages/home'
+
 
 const App = () => {
   return (
     <>
       <h1> Book Book </h1>
-      <BookSearcher />
+      <Home />
     </>
   );
 };

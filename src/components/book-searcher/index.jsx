@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-
 import * as Styled from './styles'
 import { SearchOutlined } from '@ant-design/icons';
 import bookNotFound from '../../assets/img/book-not-found.jpg'
-
 const BookSearcher = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const [books, setBooks] = useState([])
@@ -23,7 +21,6 @@ const BookSearcher = () => {
                     <input placeholder="Buscar livro" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                     <Styled.Button><SearchOutlined /></Styled.Button>
                 </div>
-
             </Styled.Form>
             <Styled.CardsWrapper>
                 {books && books.map((book) => {

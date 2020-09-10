@@ -1,9 +1,13 @@
 import React from "react";
+import BookSearcher from '../../components/book-searcher/index'
 
-//Buscador de livros
 
 const Home = () => {
-  return <> Livros </>;
+  return (
+    <>
+      <BookSearcher />
+    </>
+  )
 };
 
 export default Home;
