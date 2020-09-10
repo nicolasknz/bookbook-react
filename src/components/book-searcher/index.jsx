@@ -3,6 +3,16 @@ import axios from 'axios'
 import * as Styled from './styles'
 import { SearchOutlined } from '@ant-design/icons';
 import bookNotFound from '../../assets/img/book-not-found.jpg'
+
+/*
+  Nicolas - 10/09/20 (concluído)
+  Buscador de livres:
+    -Criar um input de busca 
+    -Buscar na API do google os livros
+    -Responsivo 
+
+*/
+
 const BookSearcher = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const [books, setBooks] = useState([])
