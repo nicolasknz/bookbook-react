@@ -39,6 +39,11 @@ const Register = () => {
 
         setRequestError("Erro de requisição!")
       })
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
   };
 
   return (
@@ -49,6 +54,7 @@ const Register = () => {
           {...layout}
           name="basic"
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
         >
           <Form.Item
             label="Nome"
@@ -56,7 +62,7 @@ const Register = () => {
             hasFeedback
             rules={[
               { required: true, message: 'Preencha um Nome válido!' },
-              { pattern: /^[a-zA-Z\u00C0-\u017F´]+\s+[a-zA-Z\u00C0-\u017F´]{1,}$/, message: 'Preencha Nome e Sobrenome!' }
+              { pattern: /^[a-zA-Z´]+\s+[a-zA-Z´]{1,}$/, message: 'Preencha Nome e Sobrenome!' }
             ]}
           >
             <Input />
@@ -67,6 +73,7 @@ const Register = () => {
             name="user"
             hasFeedback
             rules={[
+              { pattern: /^[a-zA-Z\d]{1,}$/, message: 'Preencha um Usuário válido!' },
               { required: true, message: 'Preencha um Usuário válido!' },
               { required: true, min: 6, message: 'Usuário deve conter no mínimo 6 digitos!' }
             ]}
