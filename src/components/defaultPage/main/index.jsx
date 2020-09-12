@@ -12,4 +12,7 @@ const Main = (props) => {
 };
 
 export default Main;
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/menu

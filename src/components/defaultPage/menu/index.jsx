@@ -1,39 +1,108 @@
-import React from "react";
+import React, { useState } from "react";
+import StyledMenu from "../../styled/styled-menu";
+import { MenuCenter, MenuLeft, MenuRight, StyledLogo } from "./styled";
+import { Grid, Feed, Dropdown } from "semantic-ui-react";
+import { AiOutlineHome, AiFillHome } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
+import { RiSearchFill } from "react-icons/ri";
+import UserDefault from "../../../assets/img/userDefault.jpg";
+import LogoMenu from "../../../assets/img/LogoBrancoVerde.png";
+
 import "./menu.css";
 
-import { UserOutlined, UsergroupAddOutlined } from "@ant-design/icons";
-import logo from "../../../assets/img/LogoBrancoVerde.png";
-import StyledMenu from "../../styled/styled-menu";
-
-import { LogoMenu } from "./styled";
-import { Row, Col, Menu } from "antd";
-
 const TopBar = () => {
+  const [activeHome, setActiveHome] = useState(false);
+  const [activeSearch, setActiveSearch] = useState(false);
+
+  const menuOptions = [
+    {
+      key: "name",
+      text: "Bruno",
+      value: "name",
+      image: { avatar: true, src: UserDefault },
+    },
+    {
+      key: "perfil",
+      text: "Meu Perfil",
+      value: "perfil",
+    },
+    {
+      key: "changeInfo",
+      text: "Alterar informações",
+      value: "changeInfo",
+    },
+
+    {
+      key: "logout",
+      text: "Sair",
+      value: "logout",
+    },
+  ];
+
   return (
     <>
-      <StyledMenu mode="horizontal">
-        <Row>
-          <Col lg={8} sm={4} xs={8}>
-            <LogoMenu src={logo} />
-          </Col>
-          <Col lg={12} sm={12} xs={1}></Col>
-          <Col lg={2} sm={4} xs={6}>
-            <Menu.Item
-              className="modified-item"
-              icon={<UserOutlined className="icon" />}
-            >
-              Login
-            </Menu.Item>
-          </Col>
-          <Col lg={2} sm={2} xs={6}>
-            <Menu.Item
-              className="modified-item"
-              icon={<UsergroupAddOutlined className="icon" />}
-            >
-              Cadastrar
-            </Menu.Item>
-          </Col>
-        </Row>
+      <StyledMenu>
+        <Grid>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              <MenuLeft>
+                <StyledLogo src={LogoMenu} />
+              </MenuLeft>
+            </Grid.Column>
+            <Grid.Column>
+              <MenuCenter>
+                {!activeHome ? (
+                  <div
+                    className="div-home"
+                    onClick={() => {
+                      setActiveHome(!activeHome);
+                      setActiveSearch(false);
+                    }}
+                  >
+                    <AiOutlineHome className="icon-home" />
+                  </div>
+                ) : (
+                  <div className="div-home-active">
+                    <AiFillHome className="icon-home" />
+                  </div>
+                )}
+                {!activeSearch ? (
+                  <div
+                    className="div-search"
+                    onClick={() => {
+                      setActiveSearch(!activeSearch);
+                      setActiveHome(false);
+                    }}
+                  >
+                    <BsSearch className="icon-search" />
+                  </div>
+                ) : (
+                  <div className="div-search-active">
+                    <RiSearchFill className="icon-search" />
+                  </div>
+                )}
+              </MenuCenter>
+            </Grid.Column>
+            <Grid.Column>
+              <MenuRight>
+                <Feed>
+                  <Feed.Event>
+                    <Feed.Label className="user-default">
+                      <img src={UserDefault} />
+                    </Feed.Label>
+                  </Feed.Event>
+                </Feed>
+                <Dropdown direction="left" text={<b> Bruno </b>} >
+                  <Dropdown.Menu>
+                    <Dropdown.Item icon='user' text="Meu Perfil" />
+                    <Dropdown.Item icon='edit' text="Alterar informações" />
+                    <Dropdown.Item icon='sign-out' color="red" text="Sair" />
+                  </Dropdown.Menu>
+                </Dropdown>
+              </MenuRight>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </StyledMenu>
     </>
   );

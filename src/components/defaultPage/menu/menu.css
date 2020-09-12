@@ -1,23 +1,85 @@
-.modified-item {
-  border-bottom: 2px solid transparent !important;
-  color: #ffffff !important;
-  font-weight: bold !important;
-  font-size: 13pt;
-  padding: 5px 10px !important;
+.icon-home {
+  font-size: 25pt;
+  margin-top: 15px;
 }
 
-.icon {
-  font-size: 15pt !important;
-  margin-right: 8px;
+.icon-search {
+  font-size: 25pt;
+  margin-top: 15px;
 }
+
+.div-home {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  height: 60px;
+}
+
+.div-home-active {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  border-bottom: 3px solid white;
+}
+
+.div-search {
+  text-align: center;
+  height: 60px;
+  width: 80px;
+}
+
+.div-search-active {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  border-bottom: 3px solid white;
+}
+
+.div-home:hover {
+  background-color: #f0f2f538;
+}
+
+.div-search:hover {
+  background-color: #f0f2f538;
+}
+
+.user-default {
+  margin-right: 12px;
+  margin-top: 15px;
+}
+
 
 @media (max-width: 480px) {
-  .modified-item {
-    font-size: 12pt;
+  .div-home {
+    margin-right: 25px;
+    padding: 0px 10px;
   }
 
-  .icon {
-    font-size: 12pt !important;
+  .div-home-active {
+    margin-right: 25px;
+    padding: 0px 10px;
+  }
+
+  .div-search {
+    padding: 0px 10px;
+  }
+
+  .div-search-active {
+    padding: 0px 10px;
+  }
+
+  .icon-home {
+    margin-top: 20px;
+    font-size: 22pt;
   }
   
+  .icon-search {
+    margin-top: 23px;
+    font-size: 20pt;
+  }
+
+  .user-default {
+    display: none!important;
+  }
+
 }

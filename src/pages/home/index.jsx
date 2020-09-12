@@ -1,13 +1,12 @@
 import React from "react";
-import BookSearcher from '../../components/book-searcher/index'
-
+import Main from "../../components/defaultPage/main";
 
 const Home = () => {
   return (
     <>
-      <BookSearcher />
+      <Main></Main>
     </>
-  )
+  );
 };
 
 export default Home;
