@@ -7,12 +7,15 @@ import { BsSearch } from "react-icons/bs";
 import { RiSearchFill } from "react-icons/ri";
 import UserDefault from "../../../assets/img/userDefault.jpg";
 import LogoMenu from "../../../assets/img/LogoBrancoVerde.png";
+import { useHistory } from "react-router-dom";
 
 import "./menu.css";
 
 const TopBar = () => {
-  const [activeHome, setActiveHome] = useState(false);
+  const [activeHome, setActiveHome] = useState(true);
   const [activeSearch, setActiveSearch] = useState(false);
+
+  const history = useHistory();
 
   const menuOptions = [
     {
@@ -46,7 +49,7 @@ const TopBar = () => {
           <Grid.Row columns={3}>
             <Grid.Column>
               <MenuLeft>
-                <StyledLogo src={LogoMenu} />
+                <StyledLogo src={LogoMenu} onClick={() => history.push("/")} />
               </MenuLeft>
             </Grid.Column>
             <Grid.Column>
@@ -57,6 +60,7 @@ const TopBar = () => {
                     onClick={() => {
                       setActiveHome(!activeHome);
                       setActiveSearch(false);
+                      history.push("/");
                     }}
                   >
                     <AiOutlineHome className="icon-home" />
@@ -92,11 +96,11 @@ const TopBar = () => {
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
-                <Dropdown direction="left" text={<b> Bruno </b>} >
+                <Dropdown direction="left" text={<b> Bruno </b>}>
                   <Dropdown.Menu>
-                    <Dropdown.Item icon='user' text="Meu Perfil" />
-                    <Dropdown.Item icon='edit' text="Alterar informações" />
-                    <Dropdown.Item icon='sign-out' color="red" text="Sair" />
+                    <Dropdown.Item icon="user" text="Meu Perfil" />
+                    <Dropdown.Item icon="edit" text="Alterar informações" />
+                    <Dropdown.Item icon="sign-out" color="red" text="Sair" />
                   </Dropdown.Menu>
                 </Dropdown>
               </MenuRight>

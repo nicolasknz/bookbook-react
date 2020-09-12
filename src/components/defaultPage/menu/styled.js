@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledLogo = styled.img`
   width: 50px;
   margin-top: 5px;
+  cursor: pointer;
 
   @media (max-width: 480px) {
     width: 40px;

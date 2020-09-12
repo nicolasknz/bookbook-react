@@ -1,11 +1,15 @@
 .icon-home {
   font-size: 25pt;
-  margin-top: 15px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  cursor: pointer;
 }
 
 .icon-search {
-  font-size: 25pt;
-  margin-top: 15px;
+  font-size: 23pt;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  cursor: pointer;
 }
 
 .div-home {
@@ -13,6 +17,7 @@
   width: 80px;
   margin-right: 5px;
   height: 60px;
+  cursor: pointer;
 }
 
 .div-home-active {
@@ -20,12 +25,14 @@
   width: 80px;
   margin-right: 5px;
   border-bottom: 3px solid white;
+  cursor: pointer;
 }
 
 .div-search {
   text-align: center;
   height: 60px;
   width: 80px;
+  cursor: pointer;
 }
 
 .div-search-active {
@@ -33,6 +40,7 @@
   width: 80px;
   margin-right: 5px;
   border-bottom: 3px solid white;
+  cursor: pointer;
 }
 
 .div-home:hover {
