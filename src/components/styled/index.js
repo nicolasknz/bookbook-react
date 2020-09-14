@@ -1,4 +1,8 @@
-import { StyledCard } from './styled-card';
-import { StyledTimeline } from './styled-timeline';
+import Container from "./styled-container";
+import StyledCard from "./styled-card";
+import StyledTimeline from "./styled-timeline";
 
-export { StyledCard, StyledTimeline };
+export { Container, StyledCard, StyledTimeline };
+
+
+

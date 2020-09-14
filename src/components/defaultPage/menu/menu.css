@@ -1,0 +1,93 @@
+.icon-home {
+  font-size: 25pt;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.icon-search {
+  font-size: 23pt;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.div-home {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.div-home-active {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+.div-search {
+  text-align: center;
+  height: 60px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.div-search-active {
+  text-align: center;
+  width: 80px;
+  margin-right: 5px;
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+.div-home:hover {
+  background-color: #f0f2f538;
+}
+
+.div-search:hover {
+  background-color: #f0f2f538;
+}
+
+.user-default {
+  margin-right: 12px;
+  margin-top: 15px;
+}
+
+
+@media (max-width: 480px) {
+  .div-home {
+    margin-right: 25px;
+    padding: 0px 10px;
+  }
+
+  .div-home-active {
+    margin-right: 25px;
+    padding: 0px 10px;
+  }
+
+  .div-search {
+    padding: 0px 10px;
+  }
+
+  .div-search-active {
+    padding: 0px 10px;
+  }
+
+  .icon-home {
+    margin-top: 20px;
+    font-size: 22pt;
+  }
+  
+  .icon-search {
+    margin-top: 23px;
+    font-size: 20pt;
+  }
+
+  .user-default {
+    display: none!important;
+  }
+
+}

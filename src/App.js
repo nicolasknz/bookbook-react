@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Timeline from './pages/timeline';
+import { Home } from "./pages";
 
 const App = () => {
   return (
     <>
-      <Timeline />
+      <Home />
     </>
   );
 };
