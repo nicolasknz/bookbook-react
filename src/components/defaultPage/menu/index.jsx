@@ -17,30 +17,30 @@ const TopBar = () => {
 
   const history = useHistory();
 
-  const menuOptions = [
-    {
-      key: "name",
-      text: "Bruno",
-      value: "name",
-      image: { avatar: true, src: UserDefault },
-    },
-    {
-      key: "perfil",
-      text: "Meu Perfil",
-      value: "perfil",
-    },
-    {
-      key: "changeInfo",
-      text: "Alterar informações",
-      value: "changeInfo",
-    },
+  // const menuOptions = [
+  //   {
+  //     key: "name",
+  //     text: "Bruno",
+  //     value: "name",
+  //     image: { avatar: true, src: UserDefault },
+  //   },
+  //   {
+  //     key: "perfil",
+  //     text: "Meu Perfil",
+  //     value: "perfil",
+  //   },
+  //   {
+  //     key: "changeInfo",
+  //     text: "Alterar informações",
+  //     value: "changeInfo",
+  //   },
 
-    {
-      key: "logout",
-      text: "Sair",
-      value: "logout",
-    },
-  ];
+  //   {
+  //     key: "logout",
+  //     text: "Sair",
+  //     value: "logout",
+  //   },
+  // ];
 
   return (
     <>
@@ -92,7 +92,7 @@ const TopBar = () => {
                 <Feed>
                   <Feed.Event>
                     <Feed.Label className="user-default">
-                      <img src={UserDefault} />
+                      <img src={UserDefault} alt="" />
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>

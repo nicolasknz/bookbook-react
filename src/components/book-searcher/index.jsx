@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import * as Styled from './styles'
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card'

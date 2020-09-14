@@ -29,11 +29,11 @@ const Register = () => {
       .post("https://ka-users-api.herokuapp.com/users", { user: { ...values } })
       .then((res) => { history.push("/login") })
       .catch((error) => {
-        if (error.response.data.user == "has already been taken") {
+        if (error.response.data.user === "has already been taken") {
           return setRequestError("Usuário já está cadastrado!")
         }
 
-        if (error.response.data.email == "has already been taken") {
+        if (error.response.data.email === "has already been taken") {
           return setRequestError("E-mail já está cadastrado!")
         }
 
