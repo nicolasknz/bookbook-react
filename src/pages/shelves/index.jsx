@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import {
-  BookCard,
-  CardsWrapper,
-} from "../../components/styled/styled-book-card";
-import Main from "../../components/defaultPage/main";
-import * as Styled from "./styles";
-import bookNotFound from "../../assets/img/book-not-found.jpg";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
 
+import Main from '../../components/defaultPage/main';
+import * as Styled from './styles';
+import bookNotFound from '../../assets/img/book-not-found.jpg';
 
-import axios from "axios";
+import axios from 'axios';
 
 const Shelves = () => {
   const [userBooks, setUserBooks] = useState([]);
   const session = useSelector((state) => state.session);
-  console.log(userBooks);
+  
+  //livros do estado
+  const books = useSelector((state) => state.userBooks);
+
+  console.log(books);
+
   useEffect(() => {
     axios
       .get(`https://ka-users-api.herokuapp.com/users/995/books`, {
@@ -38,10 +40,7 @@ const Shelves = () => {
                     <strong>{book.title}</strong>
                     <span>{book.author}</span>
                   </div>
-                  <img
-                    alt="img"
-                    src={book.image_url ? book.image_url : bookNotFound}
-                  />
+                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
                 </BookCard>
               );
             })}
@@ -59,10 +58,7 @@ const Shelves = () => {
                     <strong>{book.title}</strong>
                     <span>{book.author}</span>
                   </div>
-                  <img
-                    alt="img"
-                    src={book.image_url ? book.image_url : bookNotFound}
-                  />
+                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
                 </BookCard>
               );
             })}
@@ -80,10 +76,7 @@ const Shelves = () => {
                     <strong>{book.title}</strong>
                     <span>{book.author}</span>
                   </div>
-                  <img
-                    alt="img"
-                    src={book.image_url ? book.image_url : bookNotFound}
-                  />
+                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
                 </BookCard>
               );
             })}

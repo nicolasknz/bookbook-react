@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import * as Styled from "./styles";
-import {
-  BookCard,
-  CardsWrapper,
-} from "../../components/styled/styled-book-card";
-import { SearchOutlined } from "@ant-design/icons";
-import { Button, Dimmer, Header, Image } from "semantic-ui-react";
-import bookNotFound from "../../assets/img/book-not-found.jpg";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import * as Styled from './styles';
+import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Dimmer, Header, Image } from 'semantic-ui-react';
+import bookNotFound from '../../assets/img/book-not-found.jpg';
+import { addBook } from '../../redux/actions/user-books';
+import { useDispatch, useSelector } from 'react-redux';
 
 /*
   Nicolas - 10/09/20 (concluído)
@@ -16,12 +15,22 @@ import bookNotFound from "../../assets/img/book-not-found.jpg";
     -Buscar na API do google os livros
     -Responsivo 
 
+  Bruno - 14/09/20 (concluído)
+  Buscador de livres:
+    -Adicionado onClick para adicionar a prateleira
+    -Adicionado Dimmer
+
 */
 
 const BookSearcher = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
   const [active, setActive] = useState(false);
+
+  const dispatch = useDispatch();
+  const userBooks = useSelector((state) => state.userBooks);
+
+  console.log(userBooks);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,18 +69,20 @@ const BookSearcher = () => {
                 <Button
                   icon="plus"
                   primary
-                  onClick={() => alert(book.volumeInfo.title)}
+                  onClick={() => {
+                    alert(book.volumeInfo.title + " foi adicionado a sua prateleira")
+                    dispatch(addBook(book))
+                  }}
                 />
               </div>
             );
+
             return (
               <BookCard key={book.id}>
                 <div className="meta-info">
                   <strong>{book.volumeInfo.title}</strong>
                   {book.volumeInfo.authors ? (
-                    book.volumeInfo.authors.map((author, key) => (
-                      <span key={key}>{author}</span>
-                    ))
+                    book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)
                   ) : (
                     <span>Autor Desconhecido</span>
                   )}
@@ -80,11 +91,9 @@ const BookSearcher = () => {
                   as={Image}
                   dimmer={{ active: active === book.id, content }}
                   onMouseEnter={() => setActive(book.id)}
-                  onMouseLeave={() => " "}
+                  onMouseLeave={() => setActive(false)}
                   src={
-                    book.volumeInfo.imageLinks
-                      ? book.volumeInfo.imageLinks.thumbnail
-                      : bookNotFound
+                    book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound
                   }
                 />
               </BookCard>

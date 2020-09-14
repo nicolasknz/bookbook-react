@@ -17,31 +17,6 @@ const TopBar = () => {
 
   const history = useHistory();
 
-  const menuOptions = [
-    {
-      key: "name",
-      text: "Bruno",
-      value: "name",
-      image: { avatar: true, src: UserDefault },
-    },
-    {
-      key: "perfil",
-      text: "Meu Perfil",
-      value: "perfil",
-    },
-    {
-      key: "changeInfo",
-      text: "Alterar informações",
-      value: "changeInfo",
-    },
-
-    {
-      key: "logout",
-      text: "Sair",
-      value: "logout",
-    },
-  ];
-
   return (
     <>
       <StyledMenu>
