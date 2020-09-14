@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import StyledMenu from "../../styled/styled-menu";
-import { MenuCenter, MenuLeft, MenuRight, StyledLogo } from "./styled";
-import { Grid, Feed, Dropdown } from "semantic-ui-react";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
-import { RiSearchFill } from "react-icons/ri";
-import UserDefault from "../../../assets/img/userDefault.jpg";
-import LogoMenu from "../../../assets/img/LogoBrancoVerde.png";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import StyledMenu from '../../styled/styled-menu';
+import { MenuCenter, MenuLeft, MenuRight, StyledLogo } from './styled';
+import { Grid, Feed, Dropdown } from 'semantic-ui-react';
+import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
+import { RiSearchFill } from 'react-icons/ri';
+import UserDefault from '../../../assets/img/userDefault.jpg';
+import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
+import { Link, useHistory } from 'react-router-dom';
+import { login } from '../../../redux/actions/session';
 
-import "./menu.css";
+import { useDispatch } from 'react-redux';
+
+import './menu.css';
 
 const TopBar = () => {
   const [activeHome, setActiveHome] = useState(true);
   const [activeSearch, setActiveSearch] = useState(false);
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -24,7 +28,7 @@ const TopBar = () => {
           <Grid.Row columns={3}>
             <Grid.Column>
               <MenuLeft>
-                <StyledLogo src={LogoMenu} onClick={() => history.push("/")} />
+                <StyledLogo src={LogoMenu} onClick={() => history.push('/')} />
               </MenuLeft>
             </Grid.Column>
             <Grid.Column>
@@ -35,9 +39,8 @@ const TopBar = () => {
                     onClick={() => {
                       setActiveHome(!activeHome);
                       setActiveSearch(false);
-                      history.push("/");
-                    }}
-                  >
+                      history.push('/');
+                    }}>
                     <AiOutlineHome className="icon-home" />
                   </div>
                 ) : (
@@ -51,8 +54,8 @@ const TopBar = () => {
                     onClick={() => {
                       setActiveSearch(!activeSearch);
                       setActiveHome(false);
-                    }}
-                  >
+                      history.push('/home');
+                    }}>
                     <BsSearch className="icon-search" />
                   </div>
                 ) : (
@@ -73,9 +76,21 @@ const TopBar = () => {
                 </Feed>
                 <Dropdown direction="left" text={<b> Bruno </b>}>
                   <Dropdown.Menu>
-                    <Dropdown.Item icon="user" text="Meu Perfil" />
+                    <Dropdown.Item
+                      icon="user"
+                      text="Meu Perfil"
+                      onClick={() => history.push('/shelves')}
+                    />
                     <Dropdown.Item icon="edit" text="Alterar informações" />
-                    <Dropdown.Item icon="sign-out" color="red" text="Sair" />
+                    <Dropdown.Item
+                      icon="sign-out"
+                      color="red"
+                      text="Sair"
+                      onClick={() => {
+                        window.localStorage.clear();
+                        dispatch(login('', ''));
+                      }}
+                    />
                   </Dropdown.Menu>
                 </Dropdown>
               </MenuRight>
