@@ -1,9 +1,10 @@
 import React from "react";
+import {Profile} from "./pages"
 
 const App = () => {
   return (
     <>
-      <h1> Book Book </h1>
+      <Profile />
     </>
   );
 };
