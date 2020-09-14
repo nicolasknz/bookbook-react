@@ -1,0 +1,23 @@
+.modified-item {
+  border-bottom: 2px solid transparent !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  font-size: 13pt;
+  padding: 5px 10px !important;
+}
+
+.icon {
+  font-size: 15pt !important;
+  margin-right: 8px;
+}
+
+@media (max-width: 480px) {
+  .modified-item {
+    font-size: 12pt;
+  }
+
+  .icon {
+    font-size: 12pt !important;
+  }
+  
+}

@@ -51,7 +51,7 @@ export const Title = styled.div`
   font-size: 23pt;
   font-weight: bold;
   color: #001529;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 
   @media (max-width: 480px) {
     display: none;
@@ -84,7 +84,7 @@ export const LoginIllustration = styled.img`
   }
 `;
 
-export const Login = styled.h5`
+export const Register = styled.h5`
   color: #4583a3;
   padding-bottom: 15px;
   text-align: center;
@@ -97,5 +97,4 @@ export const Login = styled.h5`
 
 export const ErrorMessage = styled.span`
   color: red;
-  font-size: 12px;
 `;
