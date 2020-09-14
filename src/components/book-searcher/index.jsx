@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Styled from './styles'
+import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card'
 import { SearchOutlined } from '@ant-design/icons';
 import bookNotFound from '../../assets/img/book-not-found.jpg'
 
@@ -32,21 +33,22 @@ const BookSearcher = () => {
                     <Styled.Button><SearchOutlined /></Styled.Button>
                 </div>
             </Styled.Form>
-            <Styled.CardsWrapper>
+            <CardsWrapper>
                 {books && books.map((book) => {
                     return (
-                        <Styled.BookCard key={book.id}>
-                            <img alt="img"
-                                src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound}
-                            />
+                        <BookCard key={book.id}>
                             <div className="meta-info">
                                 <strong>{book.volumeInfo.title}</strong>
                                 {book.volumeInfo.authors ? book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>) : <span>Autor Desconhecido</span>}
                             </div>
-                        </Styled.BookCard>
+                            <img alt="img"
+                                src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : bookNotFound}
+                            />
+
+                        </BookCard>
                     )
                 })}
-            </Styled.CardsWrapper>
+            </CardsWrapper>
         </Styled.MainWrapper >
     )
 }
