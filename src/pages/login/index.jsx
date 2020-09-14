@@ -32,7 +32,7 @@ import {
 
 import StyledContainerCenter from "../../components/styled/styled-container";
 
-import { Grid, Form, Message } from "semantic-ui-react";
+import { Grid, Form } from "semantic-ui-react";
 
 import logo from "../../assets/img/logo_com_transparencia.png";
 import loginIllustration from "../../assets/img/login.svg";
