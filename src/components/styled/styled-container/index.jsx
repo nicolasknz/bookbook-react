@@ -7,6 +7,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
+
+  @media (max-width: 480px) {
+    display: block;
+  }
 `;
 
 export default Container;

@@ -1,9 +1,10 @@
 /*
-  Bruno - 10/09/20 (concluído)
+  Bruno - 14/09/20 (concluído)
   Tela de Login:
-    -Criar um formulário 
-    -Fazer comunicação com API 
-    -Salvar o token autenticado
+    -Reformulei o formulario
+    -Adicionado a biblioteca semantic 
+    -Validações feitas pelo hook-form
+    -Responsivo
 */
 
 import React, { useState } from "react";
@@ -11,35 +12,46 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
 import { login } from "../../redux/actions";
-
-import Main from "../../components/defaultPage/main";
+import { useForm } from "react-hook-form";
 
 import {
-  LoginBox,
-  StyledButton,
-  Title,
-  LogoLogin,
   ImageBox,
+  LogoLogin,
+  Title,
+  StyledButton,
+  LoginBox,
+  LoginIllustration,
+  Background,
   StyledContainer,
+  Register,
+  LogoCenter,
+  ErrorMessage,
 } from "./styles";
-import { Row, Col, Form, Input } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+
+import StyledContainerCenter from "../../components/styled/styled-container";
+
+import { Grid, Form, Message } from "semantic-ui-react";
+
 import logo from "../../assets/img/logo_com_transparencia.png";
+import loginIllustration from "../../assets/img/login.svg";
 
 const Login = () => {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
+  const { register, handleSubmit, errors, setError } = useForm();
 
   const dispatch = useDispatch();
 
   const logingIn = (data) => {
     const toAuthenticate = "https://ka-users-api.herokuapp.com/authenticate";
+
     axios
       .post(toAuthenticate, { ...data })
       .then((res) => {
         dispatch(login(res.data.auth_token, data));
+        console.log("usuario logado");
         history.push("/");
       })
       .catch((err) => {
@@ -53,55 +65,67 @@ const Login = () => {
 
   return (
     <>
-      <Main>
-        <StyledContainer>
-          <Row>
-            <Col lg={12} sm={24} xs={24}>
-              <ImageBox>
-                <LogoLogin src={logo} />
-              </ImageBox>
-            </Col>
-            <Col lg={12} sm={24} xs={24}>
-              <LoginBox>
-                <Form onFinish={logingIn}>
-                  <Form.Item>
-                    <Title>Login</Title>
-                  </Form.Item>
-                  <Form.Item
-                    name="user"
-                    rules={[
-                      { required: true, message: "Campo nome é obrigatório" },
-                    ]}
-                  >
-                    <Input
-                      prefix={<UserOutlined className="site-form-item-icon" />}
-                      placeholder="Nome"
-                    />
-                  </Form.Item>
+      <Background>
+        <StyledContainerCenter>
+          <StyledContainer>
+            <Grid stackable columns={2}>
+              <Grid.Row>
+                <Grid.Column>
+                  <ImageBox>
+                    <LoginIllustration src={loginIllustration} />
+                  </ImageBox>
+                </Grid.Column>
+                <Grid.Column>
+                  <LoginBox>
+                    <LogoCenter>
+                      <LogoLogin src={logo} />
+                    </LogoCenter>
+                    <Form onSubmit={handleSubmit(logingIn)}>
+                      <Form.Field required>
+                        <label>Usuário</label>
+                        <input
+                          placeholder="Nome do Usuário"
+                          name="user"
+                          ref={register({
+                            required: "Usuário é obrigatório!",
+                          })}
+                        />
+                        {errors.user && (
+                          <ErrorMessage>
+                            <b> Erro: </b> {errors.user.message}
+                          </ErrorMessage>
+                        )}
+                      </Form.Field>
 
-                  <Form.Item
-                    name="password"
-                    rules={[
-                      { required: true, message: "Campo senha é obrigatório" },
-                    ]}
-                  >
-                    <Input.Password
-                      prefix={<LockOutlined className="site-form-item-icon" />}
-                      placeholder="Senha"
-                    />
-                  </Form.Item>
-                  <Form.Item>
-                    <StyledButton type="primary" htmlType="submit">
-                      Entrar
-                    </StyledButton>
-                  </Form.Item>
-                  {errorMessage}
-                </Form>
-              </LoginBox>
-            </Col>
-          </Row>
-        </StyledContainer>
-      </Main>
+                      <Form.Field required>
+                        <label>Senha</label>
+                        <input
+                          placeholder="Senha"
+                          name="password"
+                          ref={register({
+                            required: "Senha é obrigatória!",
+                          })}
+                        />
+                        {errors.password && (
+                          <ErrorMessage>
+                            <b> Erro: </b> {errors.password.message}
+                          </ErrorMessage>
+                        )}
+                      </Form.Field>
+
+                      <Register> Não possui conta? Registrar-se! </Register>
+                      <StyledButton type="submit" inverted color="red">
+                        Entrar
+                      </StyledButton>
+                      {errorMessage}
+                    </Form>
+                  </LoginBox>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </StyledContainer>
+        </StyledContainerCenter>
+      </Background>
     </>
   );
 };
