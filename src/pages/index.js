@@ -5,3 +5,6 @@ import Shelves from "./shelves";
 import Timeline from "./timeline";
 
 export { Home, Login, Register, Shelves, Timeline };
+import Profile from "./profile";
+
+export { Home, Login, Register, Shelves, Profile };
