@@ -15,21 +15,16 @@ import bookNotFound from '../../assets/img/book-not-found.jpg'
 */
 
 const BookSearcher = () => {
-    const [searchTerm, setSearchTerm] = useState("react")
+    const [searchTerm, setSearchTerm] = useState("")
     const [books, setBooks] = useState([])
     const handleSubmit = (e) => {
         e.preventDefault()
-
-    }
-
-    useEffect(() => {
         axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
             .then((res) => {
                 setBooks(res.data.items)
             })
             .catch((err) => { console.log(err) })
-    }, [])
-
+    }
     return (
         <Styled.MainWrapper>
             <Styled.Form onSubmit={handleSubmit}>
