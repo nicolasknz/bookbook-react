@@ -1,5 +1,5 @@
 /*
-  Bruno - 12/09/20 (concluído)
+  Paulo - 12/09/20 (concluído)
   Timeline:
     -Criado linha do tempo 
     -Fazer get na API 

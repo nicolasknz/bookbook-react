@@ -1155,7 +1155,11 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+<<<<<<< HEAD
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.10.4", "@babel/runtime@^7.10.5", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5":
+=======
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.10.4", "@babel/runtime@^7.10.5", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
+>>>>>>> feature/login
   version "7.11.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
   integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
@@ -9187,9 +9191,9 @@ rc-resize-observer@^0.2.0, rc-resize-observer@^0.2.1, rc-resize-observer@^0.2.3:
     resize-observer-polyfill "^1.5.1"
 
 rc-select@^11.1.1, rc-select@~11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/rc-select/-/rc-select-11.2.0.tgz#6372dca772779104eadd9f832633fcb79bb86844"
-  integrity sha512-rw9XH2ALt/lpXDM/gULWiPDkEh5UndLDMqZo5FRiZji7MYLg+CbmcFpvJ6iYN5KpKosyLsCWrwvzeWZOCL6q0Q==
+  version "11.2.1"
+  resolved "https://registry.yarnpkg.com/rc-select/-/rc-select-11.2.1.tgz#6758d99da3338e9b3451618a39eb0d92be2f89a6"
+  integrity sha512-CAJHCDeHL37QH+VgQRz9DpPfIEbOU0Kx+3NF6RRuzeQ2EsXmFcagrObwPbroxVyfRx/eS5WKfK5eYS3u1llDlQ==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "2.x"
@@ -9229,9 +9233,9 @@ rc-switch@~3.2.0:
     rc-util "^5.0.1"
 
 rc-table@~7.9.2:
-  version "7.9.7"
-  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-7.9.7.tgz#1fca749ca0cd99cdba4db7ee10317ba6f54f9663"
-  integrity sha512-S/46pdU7fKBoL7N8JDu+KpkGSB3fJkiGoxvMCLBrR4p7/BJEYr1X4MFKb5BpkE7ZpEK4n44ILiVZZT7I7EiGVA==
+  version "7.9.8"
+  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-7.9.8.tgz#6a70085125d59eac2ee49763fdd8af1260afa0c1"
+  integrity sha512-gC1ft3iLZgUwmpEi+KeSq6OahPmH1k/NwCo5YKYhI+OCjl5BdXAErro2cKfSA2reaM0r+OqIAoNp8YL5jf+t4A==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.5"
@@ -9265,17 +9269,32 @@ rc-textarea@^0.3.0, rc-textarea@~0.3.0:
     rc-resize-observer "^0.2.3"
 
 rc-tooltip@^4.0.0:
+<<<<<<< HEAD
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-4.2.3.tgz#f6fb2a6d9e76ef64295a1d9b5a1618f8634c0645"
+  integrity sha512-7ySkaPGeqLLM4a/QYrKQ280aDthPxyvjJqQMstWX/AWX7/b1p23HIdHXdjBkziuvcnvXkW4lgZdFTVsylDiX1w==
+=======
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-4.2.2.tgz#b0c374a26846f285b21eb74f9d533e6049e34b22"
   integrity sha512-mAs+gAngUyHVA6HdFXsELoJOHgfjAACLLc8SGtnVhovJdyqs5ZGSL9p5i+ApNaVpwjswqShw7L4DRtMl7cXCQg==
+>>>>>>> feature/bookshelf-filter
   dependencies:
+    "@babel/runtime" "^7.11.2"
     rc-trigger "^4.2.1"
 
 rc-tooltip@~5.0.0:
+<<<<<<< HEAD
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-5.0.1.tgz#b82c4259604d2cb62ca610ed7932dd37fc6ef61d"
+  integrity sha512-3AnxhUS0j74xAV3khrKw8o6rg+Ima3nw09DJBezMPnX3ImQUAnayWsPSlN1mEnihjA43rcFkGM1emiKE+CXyMQ==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+=======
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-5.0.0.tgz#ee0a66103754027d0a269f83444983ea70a5560c"
   integrity sha512-WZlYGhbQ1f8tx83+5oDfTWgGs5egDPxbmW8KT63Gw7z72itOhbCBcaaGEUhQ8iVsEz9+3/cRsytAXAHRFm45hQ==
   dependencies:
+>>>>>>> feature/bookshelf-filter
     rc-trigger "^5.0.0"
 
 rc-tree-select@~4.1.1:
@@ -9301,11 +9320,17 @@ rc-tree@^3.8.0, rc-tree@~3.9.0:
     rc-virtual-list "^3.0.1"
 
 rc-trigger@^4.0.0, rc-trigger@^4.2.1, rc-trigger@^4.3.0, rc-trigger@^4.4.0:
+<<<<<<< HEAD
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-4.4.3.tgz#ed449cd6cce446555bc57f4394229c5c7154f4b0"
+  integrity sha512-yq/WyuiPwxd2q6jy+VPyy0GUCRFJ2eFqAaCwPE27AOftXeIupOcJ/2t1wakSq63cfk7qtzev5DKHUAjb8LOJCw==
+=======
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-4.4.2.tgz#74f7ebcfdcdc191b7c82380def68fbba79ed5aec"
   integrity sha512-uw2/s7j1b/RXyixa4omPuxZWv/3ln+H+p0v3trIUBxseolbdj8TTFpXYjXMZdGtMpAEAIbN1yo/K+r7wRB+xtQ==
+>>>>>>> feature/bookshelf-filter
   dependencies:
-    "@babel/runtime" "^7.10.1"
+    "@babel/runtime" "^7.11.2"
     classnames "^2.2.6"
     raf "^3.4.1"
     rc-align "^4.0.0"
@@ -9313,11 +9338,19 @@ rc-trigger@^4.0.0, rc-trigger@^4.2.1, rc-trigger@^4.3.0, rc-trigger@^4.4.0:
     rc-util "^5.0.1"
 
 rc-trigger@^5.0.0, rc-trigger@~5.0.3:
+<<<<<<< HEAD
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.0.4.tgz#957950a93ed0e19c128334c5fc65390dd886d61c"
+  integrity sha512-cFTuV73YpfC8ujknycSjEvIDX7VtspEgFhibk/evf415Q0roHazs9dEbajKRgionpC/88OKLRR6G81eA4BvLTQ==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+=======
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-5.0.3.tgz#9b35a005643a658c1b89949ca9494fe2ee030235"
   integrity sha512-N1SAgo6fDCHDfE5bQDZ2GgijekhhACMR6GeOUtfhPMqWfYyaHDTJQ5fla8OOfgkecU/ge3zvqIEtGIFnURkc9A==
   dependencies:
     "@babel/runtime" "^7.10.1"
+>>>>>>> feature/bookshelf-filter
     classnames "^2.2.6"
     rc-align "^4.0.0"
     rc-motion "^2.0.0"
@@ -9411,6 +9444,23 @@ react-form@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-form/-/react-form-4.0.1.tgz#f442adae7142261a6650a63001c49827e4317ca5"
   integrity sha512-vhsCuBLZJYjm6vd8TBxIhIWeB/8Jg4mmmiR3Zj+1zIGBM39qJf1CLqekadLp0J9NeW0EsZxUnBtbmEnMeZ/7Pw==
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+react-hook-form@^6.8.1:
+  version "6.8.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.8.1.tgz#eb2f78ddd5ae468082259f772d072c820a6fda46"
+  integrity sha512-ORHf4Ee2AuPPotJjGjqOjD5GrLVkWV/d+yeUimXndx2pVYj/3qzqF9RIyTszIAWfuLNJ4SZt4Oi29UTnT2kx5A==
+=======
+>>>>>>> feature/register
+react-hook-form@^6.8.2:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.8.2.tgz#2a63b3d8578bd4f7965767ae4e205c2c24a1c5bc"
+  integrity sha512-9Xz1uz61fCMtQ0MTTnTIDqUpWWi+livCUsYcIOpUrlJXDHJ7QgDLF3wVKcmLIX727FFyGzesXkVCg8cQuRy8OQ==
+>>>>>>> feature/login
+
+=======
+>>>>>>> feature/bookshelf-filter
 react-icons@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
@@ -11089,6 +11139,11 @@ type@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/type/-/type-2.1.0.tgz#9bdc22c648cf8cf86dd23d32336a41cfb6475e3f"
   integrity sha512-G9absDWvhAWCV2gmF1zKud3OyC61nZDwWvBL2DApaVFogI07CprggiQAOOjvp2NRjYWFzPyu7vwtDrQFq8jeSA==
+
+typed-styles@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
+  integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
 
 typed-styles@^0.0.7:
   version "0.0.7"
