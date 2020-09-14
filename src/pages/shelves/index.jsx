@@ -1,4 +1,4 @@
-import React, { useState, useEffeect, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card'
 import Main from "../../components/defaultPage/main";
 import * as Styled from './styles'
