@@ -4,11 +4,10 @@ export const ContainerForm = styled.div`
   display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 1%;
-  width: 35vw;
-  height:60vh;
-  background-color: #31B0A1;
+  
+  width: 50vw;
+  height:100vh;
+  border: 1px solid #31B0A1;
 
   @media (max-width: 600px) {
     width: 80vw;
