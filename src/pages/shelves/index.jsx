@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
+import { BookCard } from '../../components/styled/styled-book-card';
 
-import Main from '../../components/defaultPage/main';
 import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 
@@ -11,7 +10,7 @@ import axios from 'axios';
 const Shelves = () => {
   const [userBooks, setUserBooks] = useState([]);
   const session = useSelector((state) => state.session);
-  
+
   //livros do estado
   const books = useSelector((state) => state.userBooks);
 
@@ -19,7 +18,7 @@ const Shelves = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ka-users-api.herokuapp.com/users/995/books`, {
+      .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books`, {
         headers: { Authorization: session.token },
       })
       .then((res) => setUserBooks(res.data))
@@ -40,7 +39,14 @@ const Shelves = () => {
                     <strong>{book.title}</strong>
                     <span>{book.author}</span>
                   </div>
-                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
+                  <img
+                    alt="img"
+                    onClick={() => {
+                      alert('estou lendo');
+                      book.shelf = 2;
+                    }}
+                    src={book.image_url ? book.image_url : bookNotFound}
+                  />
                 </BookCard>
               );
             })}
@@ -58,7 +64,14 @@ const Shelves = () => {
                     <strong>{book.title}</strong>
                     <span>{book.author}</span>
                   </div>
-                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
+                  <img
+                    alt="img"
+                    onClick={() => {
+                      alert(book.shelf);
+                      book.shelf = 3;
+                    }}
+                    src={book.image_url ? book.image_url : bookNotFound}
+                  />
                 </BookCard>
               );
             })}

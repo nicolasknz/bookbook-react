@@ -39,9 +39,9 @@ const TopBar = () => {
                   <div
                     className="div-home"
                     onClick={() => {
+                      setActiveSearch(!activeSearch);
                       setActiveHome(!activeHome);
-                      setActiveSearch(false);
-                      history.push('/');
+                      history.push("/home");
                     }}>
                     <AiOutlineHome className="icon-home" />
                   </div>
@@ -55,8 +55,8 @@ const TopBar = () => {
                     className="div-search"
                     onClick={() => {
                       setActiveSearch(!activeSearch);
-                      setActiveHome(false);
-                      history.push('/home');
+                      setActiveHome(!activeHome);
+                      
                     }}>
                     <BsSearch className="icon-search" />
                   </div>
@@ -72,7 +72,7 @@ const TopBar = () => {
                 <Feed>
                   <Feed.Event>
                     <Feed.Label className="user-default">
-                      <img src={UserDefault} />
+                      <img src={session ? session.user.image_url : UserDefault} />
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
