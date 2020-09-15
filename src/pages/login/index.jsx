@@ -7,15 +7,22 @@
     -Responsivo
 */
 
-import React, { useState } from "react";
+/*
+  Vinicius - 14/09/20 (concluído)
+  Tela de Login:
+    - Incluí o método Link do react-router-dom
+    - Coloquei o Link no link de se registrar
+    - Incluí armazenamento no localStorage
+*/
 
-import axios from "axios";
+import React, { useState } from 'react';
 
-import { useHistory } from "react-router-dom";
-import { useDispatch, useStore } from "react-redux";
-import { login } from "../../redux/actions/session";
-import { useForm } from "react-hook-form";
+import axios from 'axios';
 
+import { useHistory, Link } from 'react-router-dom';
+import { useDispatch, useStore } from 'react-redux';
+import { login } from '../../redux/actions/session';
+import { useForm } from 'react-hook-form';
 
 import {
   ImageBox,
@@ -29,38 +36,39 @@ import {
   Register,
   LogoCenter,
   ErrorMessage,
-} from "./styles";
+} from './styles';
 
-import StyledContainerCenter from "../../components/styled/styled-container";
+import StyledContainerCenter from '../../components/styled/styled-container';
 
-import { Grid, Form } from "semantic-ui-react";
+import { Grid, Form } from 'semantic-ui-react';
 
-import logo from "../../assets/img/logo_com_transparencia.png";
-import loginIllustration from "../../assets/img/login.svg";
+import logo from '../../assets/img/logo_com_transparencia.png';
+import loginIllustration from '../../assets/img/login.svg';
 
 const Login = () => {
   const history = useHistory();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const { register, handleSubmit, errors, setError } = useForm();
 
   const dispatch = useDispatch();
 
   const logingIn = (data) => {
-    const toAuthenticate = "https://ka-users-api.herokuapp.com/authenticate";
+    const toAuthenticate = 'https://ka-users-api.herokuapp.com/authenticate';
 
     axios
       .post(toAuthenticate, { ...data })
       .then((res) => {
         dispatch(login(res.data.auth_token, data));
-        console.log("usuario logado");
-        history.push("/");
+        window.localStorage.setItem('token', res.data.auth_token);
+        console.log('usuario logado');
+        history.push('/');
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          return setErrorMessage("Usuário/Senha incorreto.");
+          return setErrorMessage('Usuário/Senha incorreto.');
         }
 
-        setErrorMessage("Algo deu errado! Tente novamente.");
+        setErrorMessage('Algo deu errado! Tente novamente.');
       });
   };
 
@@ -88,7 +96,7 @@ const Login = () => {
                           placeholder="Nome do Usuário"
                           name="user"
                           ref={register({
-                            required: "Usuário é obrigatório!",
+                            required: 'Usuário é obrigatório!',
                           })}
                         />
                         {errors.user && (
@@ -104,7 +112,7 @@ const Login = () => {
                           placeholder="Senha"
                           name="password"
                           ref={register({
-                            required: "Senha é obrigatória!",
+                            required: 'Senha é obrigatória!',
                           })}
                         />
                         {errors.password && (
@@ -113,8 +121,9 @@ const Login = () => {
                           </ErrorMessage>
                         )}
                       </Form.Field>
-
-                      <Register> Não possui conta? Registrar-se! </Register>
+                      <Register>
+                        <Link to="/register">Não possui conta? Registrar-se!</Link>
+                      </Register>
                       <StyledButton type="submit" inverted color="red">
                         Entrar
                       </StyledButton>
