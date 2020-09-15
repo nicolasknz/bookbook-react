@@ -24,7 +24,8 @@ const Profile = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5OTQsImV4cCI6MTYzMTIxNTE3Mn0.n2RIBn5C_Z6KpO0JZ65c1pII7CiixZ5hBxrVzMZdZOc",//localStorage.getItem('currentToken'),
+          Authorization:
+            'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5OTQsImV4cCI6MTYzMTIxNTE3Mn0.n2RIBn5C_Z6KpO0JZ65c1pII7CiixZ5hBxrVzMZdZOc', //localStorage.getItem('currentToken'),
         },
       })
       .then((res) => setProfile(res.data));
