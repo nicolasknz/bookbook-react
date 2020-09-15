@@ -10,7 +10,7 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { Link, useHistory } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './menu.css';
 
@@ -18,7 +18,9 @@ const TopBar = () => {
   const [activeHome, setActiveHome] = useState(true);
   const [activeSearch, setActiveSearch] = useState(false);
   const dispatch = useDispatch();
+  const session = useSelector((state) => state.session);
 
+  console.log(session);
   const history = useHistory();
 
   return (
@@ -74,7 +76,7 @@ const TopBar = () => {
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
-                <Dropdown direction="left" text={<b> Bruno </b>}>
+                <Dropdown direction="left" text={<b> {session.user.name} </b>}>
                   <Dropdown.Menu>
                     <Dropdown.Item
                       icon="user"
