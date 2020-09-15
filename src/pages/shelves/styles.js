@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '../../components/styled/styled-button'
 
 export const MainWrapper = styled.div`
     display:flex;
@@ -23,3 +24,9 @@ export const MainWrapper = styled.div`
       width:100%;
     }
 `;
+
+export const ShelfButton = styled(Button)`
+width:80px;
+`;
+
+
