@@ -1,5 +1,3 @@
-//Example:
+import Routes from './routes/';
 
-//import Table from "./table";
-
-//export { Table };
+export { Routes };
