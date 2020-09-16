@@ -89,7 +89,11 @@ const TopBar = () => {
                 <Feed>
                   <Feed.Event>
                     <Feed.Label className="user-default">
-                      <StyledUser src={session ? session.user.image_url : UserDefault} />
+                      {session && session.user.image_url ? (
+                        <StyledUser src={session.user.image_url} />
+                      ) : (
+                        <img src={UserDefault} />
+                      )}
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
