@@ -73,7 +73,7 @@ const BookSearcher = () => {
                   primary
                   onClick={() => {
                     alert(book.volumeInfo.title + " foi adicionado a sua prateleira")
-                    dispatch(requestBook(book, session))
+                    dispatch(requestBook(book.volumeInfo, session))
                   }}
                 />
               </div>
