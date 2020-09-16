@@ -1,10 +1,10 @@
 import React from 'react';
-import {Timeline} from './pages'
+import { Routes } from './components/';
 
 const App = () => {
   return (
     <>
-      <Timeline />
+      <Routes />
     </>
   );
 };
