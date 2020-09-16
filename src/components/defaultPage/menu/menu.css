@@ -1,12 +1,14 @@
 .icon-home {
   font-size: 25pt;
-  margin-top: 16px;
+  margin-top: 18px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
 
 .icon-search {
   font-size: 25pt;
-  margin-top: 16px;
+  margin-top: 18px;
+  margin-bottom: 5px;
   cursor: pointer;
 }
 

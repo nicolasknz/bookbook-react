@@ -46,7 +46,6 @@ const Shelves = () => {
         headers: { Authorization: session.token },
       })
       .then((res) => {
-        console.log(res.data)
         setUserBooks(res.data)
       })
       .catch((err) => console.log(err));
@@ -55,8 +54,8 @@ const Shelves = () => {
     <Styled.MainWrapper>
       <div>
         <h2>WishList</h2>
-        {userBooks &&
-          userBooks
+        {books &&
+          books
             .filter((book) => book.shelf === 1)
             .map((book) => {
               return (
@@ -83,8 +82,8 @@ const Shelves = () => {
 
       <div>
         <h2>Reading</h2>
-        {userBooks &&
-          userBooks
+        {books &&
+          books
             .filter((book) => book.shelf === 2)
             .map((book) => {
               return (
@@ -111,8 +110,8 @@ const Shelves = () => {
 
       <div>
         <h2>Read</h2>
-        {userBooks &&
-          userBooks
+        {books &&
+          books
             .filter((book) => book.shelf === 3)
             .map((book) => {
               return (

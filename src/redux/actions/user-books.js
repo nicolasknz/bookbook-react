@@ -1,8 +1,20 @@
-import { ADD_BOOK, WITHDRAW_BOOK } from './types';
+import { ADD_BOOK, WITHDRAW_BOOK, BOOK_LIST } from './types';
 import axios from 'axios';
 
-export const requestBook = (newBook, session) => (dispatch) => {
-  console.log(newBook);
+export const requestUserBookList = (session) => (dispatch) => {
+  axios
+    .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books/`, {
+      headers: { Authorization: session.token },
+    })
+    .then((res) => dispatch(bookList(res.data)));
+};
+
+const bookList = (bookList) => ({
+  type: BOOK_LIST,
+  bookList,
+});
+
+export const requestAddBook = (newBook, session) => (dispatch) => {
   const book = {
     title: newBook.title,
     author: String(newBook.authors),
@@ -21,7 +33,7 @@ export const requestBook = (newBook, session) => (dispatch) => {
         headers: { Authorization: session.token },
       }
     )
-    .then((res) => console.log(res.data));
+    .then((res) => dispatch(addBook(res.data)));
 };
 
 const addBook = (newBook) => ({
