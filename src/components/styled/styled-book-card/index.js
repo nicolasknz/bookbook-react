@@ -25,9 +25,13 @@ export const BookCard = styled.div`
         box-shadow: -1px 6px 18px 1px rgba(0,0,0,0.58);
     }
     strong {
+        white-space: nowrap;
         font-weight:1000;
         font-size:15px;
         letter-spacing:0.02rem;
+        width: 204px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     span {
         font-size:13px;
