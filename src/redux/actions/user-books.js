@@ -1,4 +1,4 @@
-import { ADD_BOOK, WITHDRAW_BOOK, BOOK_LIST } from './types';
+import { ADD_BOOK, DELETE_BOOK, BOOK_LIST } from './types';
 import axios from 'axios';
 
 export const requestUserBookList = (session) => (dispatch) => {
@@ -19,7 +19,7 @@ export const requestAddBook = (newBook, session) => (dispatch) => {
     title: newBook.title,
     author: String(newBook.authors),
     shelf: 1,
-    image_url: newBook.imageLinks.thumbnail,
+    image_url: newBook.imageLinks ? newBook.imageLinks.thumbnail : undefined,
     grade: 0,
     categories: String(newBook.categories),
     review: 'Não possui avaliação',
@@ -41,7 +41,15 @@ const addBook = (newBook) => ({
   newBook,
 });
 
-export const withdrawBook = (deleteBook) => ({
-  type: WITHDRAW_BOOK,
+export const requestDeleteBook = (bookID, session) => (dispatch) => {
+  axios
+    .delete(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books/${bookID}`, {
+      headers: { Authorization: session.token },
+    })
+    .then(() => dispatch(deleteBook(bookID)));
+};
+
+const deleteBook = (deleteBook) => ({
+  type: DELETE_BOOK,
   deleteBook,
 });

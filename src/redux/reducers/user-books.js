@@ -1,4 +1,4 @@
-import { ADD_BOOK, WITHDRAW_BOOK, BOOK_LIST } from '../actions/types';
+import { ADD_BOOK, DELETE_BOOK, BOOK_LIST } from '../actions/types';
 
 const defaultState = [];
 
@@ -11,8 +11,8 @@ const userBooks = (state = defaultState, action) => {
     case ADD_BOOK:
       return [...state, action.newBook];
 
-    case WITHDRAW_BOOK:
-      return [state.filter((book) => book.google_book_id === action.deleteBook.google_book_id)];
+    case DELETE_BOOK:
+      return state.filter((book) => book.id !== action.deleteBook);
 
     default:
       return state;
