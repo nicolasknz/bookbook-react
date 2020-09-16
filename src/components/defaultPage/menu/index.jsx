@@ -1,46 +1,28 @@
-import React, { useState } from "react";
-import StyledMenu from "../../styled/styled-menu";
-import { MenuCenter, MenuLeft, MenuRight, StyledLogo } from "./styled";
-import { Grid, Feed, Dropdown } from "semantic-ui-react";
-import { AiOutlineHome, AiFillHome } from "react-icons/ai";
-import { BsSearch } from "react-icons/bs";
-import { RiSearchFill } from "react-icons/ri";
-import UserDefault from "../../../assets/img/userDefault.jpg";
-import LogoMenu from "../../../assets/img/LogoBrancoVerde.png";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import StyledMenu from '../../styled/styled-menu';
+import { MenuCenter, MenuLeft, MenuRight, StyledLogo, StyledUser, NameUser } from './styled';
+import { Grid, Feed, Dropdown } from 'semantic-ui-react';
+import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
+import { RiSearchFill } from 'react-icons/ri';
+import UserDefault from '../../../assets/img/userDefault.jpg';
+import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
+import { useHistory, useLocation } from 'react-router-dom';
+import { login } from '../../../redux/actions/session';
 
-import "./menu.css";
+import { useDispatch, useSelector } from 'react-redux';
+
+import './menu.css';
 
 const TopBar = () => {
   const [activeHome, setActiveHome] = useState(true);
   const [activeSearch, setActiveSearch] = useState(false);
+  const dispatch = useDispatch();
+  const session = useSelector((state) => state.session);
 
+  console.log(session);
   const history = useHistory();
-
-  // const menuOptions = [
-  //   {
-  //     key: "name",
-  //     text: "Bruno",
-  //     value: "name",
-  //     image: { avatar: true, src: UserDefault },
-  //   },
-  //   {
-  //     key: "perfil",
-  //     text: "Meu Perfil",
-  //     value: "perfil",
-  //   },
-  //   {
-  //     key: "changeInfo",
-  //     text: "Alterar informações",
-  //     value: "changeInfo",
-  //   },
-
-  //   {
-  //     key: "logout",
-  //     text: "Sair",
-  //     value: "logout",
-  //   },
-  // ];
+  const location = useLocation();
 
   return (
     <>
@@ -49,41 +31,56 @@ const TopBar = () => {
           <Grid.Row columns={3}>
             <Grid.Column>
               <MenuLeft>
-                <StyledLogo src={LogoMenu} onClick={() => history.push("/")} />
+                <StyledLogo src={LogoMenu} onClick={() => history.push('/')} />
               </MenuLeft>
             </Grid.Column>
             <Grid.Column>
               <MenuCenter>
-                {!activeHome ? (
-                  <div
-                    className="div-home"
-                    onClick={() => {
-                      setActiveHome(!activeHome);
-                      setActiveSearch(false);
-                      history.push("/");
-                    }}
-                  >
-                    <AiOutlineHome className="icon-home" />
-                  </div>
-                ) : (
-                  <div className="div-home-active">
-                    <AiFillHome className="icon-home" />
-                  </div>
+                {location.pathname == '/' && (
+                  <>
+                    <div className="div-home-active">
+                      <AiFillHome className="icon-home" />
+                    </div>
+                    <div
+                      className="div-search"
+                      onClick={() => {
+                        history.push('/home');
+                      }}>
+                      <BsSearch className="icon-search" />
+                    </div>
+                  </>
                 )}
-                {!activeSearch ? (
-                  <div
-                    className="div-search"
-                    onClick={() => {
-                      setActiveSearch(!activeSearch);
-                      setActiveHome(false);
-                    }}
-                  >
-                    <BsSearch className="icon-search" />
-                  </div>
-                ) : (
-                  <div className="div-search-active">
-                    <RiSearchFill className="icon-search" />
-                  </div>
+                {location.pathname == '/home' && (
+                  <>
+                    <div
+                      className="div-home"
+                      onClick={() => {
+                        history.push('/');
+                      }}>
+                      <AiOutlineHome className="icon-home" />
+                    </div>
+                    <div className="div-search-active">
+                      <RiSearchFill className="icon-search" />
+                    </div>
+                  </>
+                )}
+                {location.pathname === '/shelves' && (
+                  <>
+                    <div
+                      className="div-home"
+                      onClick={() => {
+                        history.push('/');
+                      }}>
+                      <AiOutlineHome className="icon-home" />
+                    </div>
+                    <div
+                      className="div-search"
+                      onClick={() => {
+                        history.push('/home');
+                      }}>
+                      <BsSearch className="icon-search" />
+                    </div>
+                  </>
                 )}
               </MenuCenter>
             </Grid.Column>
@@ -92,15 +89,31 @@ const TopBar = () => {
                 <Feed>
                   <Feed.Event>
                     <Feed.Label className="user-default">
-                      <img src={UserDefault} alt="" />
+                      {session && session.user.image_url ? (
+                        <StyledUser src={session.user.image_url} />
+                      ) : (
+                        <img src={UserDefault} />
+                      )}
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
-                <Dropdown direction="left" text={<b> Bruno </b>}>
+                <Dropdown direction="left" text={<NameUser>{session.user.name} </NameUser>}>
                   <Dropdown.Menu>
-                    <Dropdown.Item icon="user" text="Meu Perfil" />
+                    <Dropdown.Item
+                      icon="user"
+                      text="Meu Perfil"
+                      onClick={() => history.push('/shelves')}
+                    />
                     <Dropdown.Item icon="edit" text="Alterar informações" />
-                    <Dropdown.Item icon="sign-out" color="red" text="Sair" />
+                    <Dropdown.Item
+                      icon="sign-out"
+                      color="red"
+                      text="Sair"
+                      onClick={() => {
+                        window.localStorage.clear();
+                        dispatch(login('', ''));
+                      }}
+                    />
                   </Dropdown.Menu>
                 </Dropdown>
               </MenuRight>

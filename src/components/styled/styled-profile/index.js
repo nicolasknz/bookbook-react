@@ -4,10 +4,10 @@ import headProfile from '../../../assets/img/bg-profile.png';
 
 const StyledHeadProfile = styled.div`
   border-bottom: 2px solid lightgrey;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative;
+  top: -80px;
+  left: 0px;
+  width: 100vw;
   height: 500px;
   background-image: url(${headProfile});
   background-size: cover;
@@ -17,6 +17,7 @@ const StyledHeadProfile = styled.div`
   align-items: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-bottom: 50px;
+  z-index: -1;
 
   img {
     border: 5px solid grey;
