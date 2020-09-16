@@ -1,9 +1,14 @@
-import { ADD_BOOK, DELETE_BOOK, BOOK_LIST } from '../actions/types';
+import { ADD_BOOK, DELETE_BOOK, BOOK_LIST, CHANGE_SHELF } from '../actions/types';
 
 const defaultState = [];
 
 const userBooks = (state = defaultState, action) => {
   switch (action.type) {
+    case CHANGE_SHELF:
+      const newState = [...state]
+      const bookIndex = state.findIndex(book => book.id === action.bookId)
+      newState[bookIndex].shelf = action.currentShelf + 1
+      return newState
 
     case BOOK_LIST:
       return action.bookList;

@@ -5,7 +5,7 @@ import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import axios from 'axios';
 import { Dimmer, Image } from 'semantic-ui-react';
-import { requestDeleteBook } from '../../redux/actions/user-books';
+import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
 
 /*
   Nicolas - 15/09/20 (parcialmente concluído)
@@ -16,10 +16,7 @@ import { requestDeleteBook } from '../../redux/actions/user-books';
 */
 
 const Shelves = () => {
-  const [userBooks, setUserBooks] = useState([]);
   const [active, setActive] = useState(false);
-  // Leia a observação acima
-  const [temp, setTemp] = useState(0);
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
 
@@ -28,37 +25,6 @@ const Shelves = () => {
 
   console.log(books);
 
-  const changeShelf = (currentShelf, bookId) => {
-    axios
-      .put(
-        `https://ka-users-api.herokuapp.com/users/${session.user.id}/books/${bookId}`,
-        {
-          book: {
-            shelf: currentShelf + 1,
-          },
-        },
-        {
-          headers: {
-            Authorization: session.token,
-          },
-        }
-      )
-      .then(() => {
-        setTemp(temp + 1);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    axios
-      .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books`, {
-        headers: { Authorization: session.token },
-      })
-      .then((res) => {
-        setUserBooks(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [temp]);
   return (
     <Styled.MainWrapper>
       <div>
@@ -93,7 +59,8 @@ const Shelves = () => {
                     onMouseLeave={() => setActive(false)}
                     src={book.image_url ? book.image_url : bookNotFound}
                   />
-                  <Styled.ShelfButton onClick={() => changeShelf(book.shelf, book.id)}>
+
+                  <Styled.ShelfButton onClick={() => dispatch(requestChangeBookShelf(book.id, session, book.shelf))}>
                     Ler
                   </Styled.ShelfButton>
                 </BookCard>
@@ -133,7 +100,7 @@ const Shelves = () => {
                     onMouseLeave={() => setActive(false)}
                     src={book.image_url ? book.image_url : bookNotFound}
                   />
-                  <Styled.ShelfButton onClick={() => changeShelf(book.shelf, book.id)}>
+                  <Styled.ShelfButton onClick={() => dispatch(requestChangeBookShelf(book.id, session, book.shelf))}>
                     Lido
                   </Styled.ShelfButton>
                 </BookCard>

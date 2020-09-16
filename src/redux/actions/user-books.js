@@ -1,4 +1,4 @@
-import { ADD_BOOK, DELETE_BOOK, BOOK_LIST } from './types';
+import { ADD_BOOK, DELETE_BOOK, BOOK_LIST, CHANGE_SHELF } from './types';
 import axios from 'axios';
 
 export const requestUserBookList = (session) => (dispatch) => {
@@ -53,3 +53,30 @@ const deleteBook = (deleteBook) => ({
   type: DELETE_BOOK,
   deleteBook,
 });
+
+export const requestChangeBookShelf = (bookId, session, currentShelf) => (dispatch) => {
+  axios
+    .put(
+      `https://ka-users-api.herokuapp.com/users/${session.user.id}/books/${bookId}`,
+      {
+        book: {
+          shelf: currentShelf + 1,
+        },
+      },
+      {
+        headers: {
+          Authorization: session.token,
+        },
+      }
+    )
+    .then(() => {
+    })
+    .catch((err) => console.log(err));
+  dispatch(changeShelf(bookId, session, currentShelf))
+}
+
+export const changeShelf = (bookId, session, currentShelf) => ({
+  type: CHANGE_SHELF,
+  bookId,
+  currentShelf,
+})
