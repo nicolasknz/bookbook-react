@@ -21,7 +21,7 @@ const Routes = (props) => {
     <Switch>
       {routesRender.map((item, index) => (
         <Route key={index} exact path={item.path}>
-          {!!session.token && <Main />}
+          {session.token && <Main />}
           <item.page />
         </Route>
       ))}

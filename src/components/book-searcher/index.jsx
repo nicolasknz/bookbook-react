@@ -5,8 +5,9 @@ import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Dimmer, Header, Image } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
-import { addBook } from '../../redux/actions/user-books';
+import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 /*
   Nicolas - 10/09/20 (concluído)
@@ -29,6 +30,7 @@ const BookSearcher = () => {
 
   const dispatch = useDispatch();
   const userBooks = useSelector((state) => state.userBooks);
+  const session = useSelector((state) => state.session);
 
   console.log(userBooks);
 
@@ -71,7 +73,7 @@ const BookSearcher = () => {
                   primary
                   onClick={() => {
                     alert(book.volumeInfo.title + " foi adicionado a sua prateleira")
-                    dispatch(addBook(book))
+                    dispatch(requestAddBook(book.volumeInfo, session))
                   }}
                 />
               </div>

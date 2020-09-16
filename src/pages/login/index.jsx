@@ -57,11 +57,10 @@ const Login = () => {
 
     axios
       .post(toAuthenticate, { ...data })
-      .then(({data}) => {
-        dispatch(login(data.auth_token, data.user));
-        window.localStorage.setItem('token', data.auth_token);
-        window.localStorage.setItem('currentUser', data.user);
-        console.log('usuario logado');
+      .then((res) => {
+        dispatch(login(res.data.auth_token, res.data.user));
+        window.localStorage.setItem('token', res.data.auth_token);
+        window.localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         history.push('/');
       })
       .catch((err) => {
