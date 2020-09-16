@@ -64,7 +64,7 @@ const StyledCard = styled.div`
   }
 
   div.bookData {
-    width: 100%;
+    width: 78%;
     height: 200px;
     margin: 10px;
     display: flex;

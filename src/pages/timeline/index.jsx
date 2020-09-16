@@ -1,12 +1,8 @@
 /*
-  Paulo - 12/09/20 (concluído)
+  Paulo - 15/09/20 (concluído)
   Timeline:
-    -Criado linha do tempo 
-    -Fazer get na API 
-    -Pegar o token autenticado
-    -Criado card padrão conforme conversa em grupo
-    -Criado responsividade da tela
-    -Tem que ser feito a constante Token
+    -Refatorado token pegando do estado.
+    -Corrigido uma estilização do nome do livro que estava estourando.
 */
 
 import axios from "axios";
@@ -16,18 +12,17 @@ import { Rating } from "semantic-ui-react";
 import bookNotFound from "../../assets/img/book-not-found.jpg";
 import userDefault from "../../assets/img/userDefault.png";
 import { StyledTimeline, StyledCard } from "../../components/styled";
+import { useSelector } from "react-redux";
 
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
+  const session = useSelector((state) => state.session);
 
   useEffect(() => {
     axios
       .get("https://ka-users-api.herokuapp.com/book_reviews", {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("currentToken"),
-        },
+        headers: { Authorization: session.token },
       })
       .then((res) => setBooksList(res.data));
   }, []);
