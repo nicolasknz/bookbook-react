@@ -6,6 +6,7 @@ import bookNotFound from '../../assets/img/book-not-found.jpg';
 import axios from 'axios';
 import Profile from '../profile'
 import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import BookFeedback from '../../components/book-feedback';
 import { Dimmer, Image, Popup } from 'semantic-ui-react';
 
 /*
@@ -145,7 +146,7 @@ const Shelves = () => {
                     onMouseLeave={() => setActive(false)}
                     src={book.image_url ? book.image_url : bookNotFound}
                   />
-                  <Styled.ShelfButton>Avaliar</Styled.ShelfButton>
+                  <BookFeedback book={book}>Avaliar</BookFeedback>
                 </BookCard>
               );
             })}
