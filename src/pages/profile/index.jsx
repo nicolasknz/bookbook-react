@@ -12,21 +12,18 @@ import React, { useState, useEffect } from 'react';
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledHeadProfile } from '../../components/styled/';
 import Shelves from '../shelves';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const [profile, setProfile] = useState([]);
+  const session = useSelector((state) => state.session);
 
   useEffect(() => {
-    const userId = 994//JSON.parse(localStorage.getItem('currentUser')).id;
+    const userId = session.user.id;
 
     axios
       .get(`https://ka-users-api.herokuapp.com/users/${userId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization:
-            'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5OTQsImV4cCI6MTYzMTIxNTE3Mn0.n2RIBn5C_Z6KpO0JZ65c1pII7CiixZ5hBxrVzMZdZOc', //localStorage.getItem('currentToken'),
-        },
+        headers: { Authorization: session.token },
       })
       .then((res) => setProfile(res.data));
   }, []);

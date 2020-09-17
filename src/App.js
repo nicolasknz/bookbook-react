@@ -1,10 +1,10 @@
 import React from "react";
-import {Profile} from "./pages"
+import UserEdit from "./pages/profile/change-profile"
 
 const App = () => {
   return (
     <>
-      <Profile />
+      <UserEdit />
     </>
   );
 };
