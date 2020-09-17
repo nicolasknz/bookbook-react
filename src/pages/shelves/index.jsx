@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { BookCard } from '../../components/styled/styled-book-card';
 import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import axios from 'axios';
 import Profile from '../profile'
+import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import { Dimmer, Image, Popup } from 'semantic-ui-react';
+
 /*
   Nicolas - 15/09/20 (parcialmente concluído)
   Prateleira parte IV:
@@ -14,43 +17,15 @@ import Profile from '../profile'
 */
 
 const Shelves = () => {
-  const [userBooks, setUserBooks] = useState([]);
-  // Leia a observação acima
-  const [temp, setTemp] = useState(0)
+  const [active, setActive] = useState(false);
+  const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
 
   //livros do estado
   const books = useSelector((state) => state.userBooks);
 
-  const changeShelf = (currentShelf, bookId) => {
-    axios
-      .put(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books/${bookId}`,
-        {
-          book: {
-            shelf: currentShelf + 1,
-          }
-        },
-        {
-          headers: {
-            Authorization: session.token
-          },
-        }
-      )
-      .then(() => { setTemp(temp + 1) }
-      )
-      .catch(err => console.log(err))
-  }
+  console.log(books);
 
-  useEffect(() => {
-    axios
-      .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books`, {
-        headers: { Authorization: session.token },
-      })
-      .then((res) => {
-        setUserBooks(res.data)
-      })
-      .catch((err) => console.log(err));
-  }, [temp]);
   return (
     <>
     <Profile />
@@ -61,23 +36,37 @@ const Shelves = () => {
           books
             .filter((book) => book.shelf === 1)
             .map((book) => {
+              const content = (
+                <div>
+                  <Styled.ButtonDelete
+                    inverted
+                    icon="close"
+                    color="red"
+                    onClick={() => {
+                      alert(book.title + ' foi excluido da sua prateleira');
+                      dispatch(requestDeleteBook(book.id, session));
+                    }}
+                  />
+                </div>
+              );
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
+
                     <span>{book.author}</span>
                   </div>
-                  <img
-                    alt="img"
-                    onClick={() => {
-                      alert('estou lendo');
-                      book.shelf = 2;
-                    }}
+                  <Dimmer.Dimmable
+                    as={Image}
+                    dimmer={{ active: active === book.id, content }}
+                    onMouseEnter={() => setActive(book.id)}
+                    onMouseLeave={() => setActive(false)}
                     src={book.image_url ? book.image_url : bookNotFound}
                   />
-                  <Styled.ShelfButton
-                    onClick={() => changeShelf(book.shelf, book.id)}
-                  >Ler</Styled.ShelfButton>
+
+                  <Styled.ShelfButton onClick={() => dispatch(requestChangeBookShelf(book.id, session, book.shelf))}>
+                    Ler
+                  </Styled.ShelfButton>
                 </BookCard>
               );
             })}
@@ -89,23 +78,35 @@ const Shelves = () => {
           books
             .filter((book) => book.shelf === 2)
             .map((book) => {
+              const content = (
+                <div>
+                  <Styled.ButtonDelete
+                    inverted
+                    icon="close"
+                    color="red"
+                    onClick={() => {
+                      alert(book.title + ' foi excluido da sua prateleira');
+                      dispatch(requestDeleteBook(book.id, session));
+                    }}
+                  />
+                </div>
+              );
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
                     <span>{book.author}</span>
                   </div>
-                  <img
-                    alt="img"
-                    onClick={() => {
-                      alert(book.shelf);
-                      book.shelf = 3;
-                    }}
+                  <Dimmer.Dimmable
+                    as={Image}
+                    dimmer={{ active: active === book.id, content }}
+                    onMouseEnter={() => setActive(book.id)}
+                    onMouseLeave={() => setActive(false)}
                     src={book.image_url ? book.image_url : bookNotFound}
                   />
-                  <Styled.ShelfButton
-                    onClick={() => changeShelf(book.shelf, book.id)}
-                  >Lido</Styled.ShelfButton>
+                  <Styled.ShelfButton onClick={() => dispatch(requestChangeBookShelf(book.id, session, book.shelf))}>
+                    Lido
+                  </Styled.ShelfButton>
                 </BookCard>
               );
             })}
@@ -117,15 +118,34 @@ const Shelves = () => {
           books
             .filter((book) => book.shelf === 3)
             .map((book) => {
+              const content = (
+                <div>
+                  <Styled.ButtonDelete
+                    inverted
+                    icon="close"
+                    color="red"
+                    onClick={() => {
+                      alert(book.title + ' foi excluido da sua prateleira');
+                      dispatch(requestDeleteBook(book.id, session));
+                    }}
+                  />
+                </div>
+              );
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
+
                     <span>{book.author}</span>
                   </div>
-                  <img alt="img" src={book.image_url ? book.image_url : bookNotFound} />
-                  <Styled.ShelfButton>Avaliar
-                  </Styled.ShelfButton>
+                  <Dimmer.Dimmable
+                    as={Image}
+                    dimmer={{ active: active === book.id, content }}
+                    onMouseEnter={() => setActive(book.id)}
+                    onMouseLeave={() => setActive(false)}
+                    src={book.image_url ? book.image_url : bookNotFound}
+                  />
+                  <Styled.ShelfButton>Avaliar</Styled.ShelfButton>
                 </BookCard>
               );
             })}
