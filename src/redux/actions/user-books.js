@@ -69,14 +69,13 @@ export const requestChangeBookShelf = (bookId, session, currentShelf) => (dispat
         },
       }
     )
-    .then(() => {
-    })
+    .then(() => {})
     .catch((err) => console.log(err));
-  dispatch(changeShelf(bookId, session, currentShelf))
-}
+  dispatch(changeShelf(bookId, session, currentShelf));
+};
 
 export const changeShelf = (bookId, session, currentShelf) => ({
   type: CHANGE_SHELF,
   bookId,
   currentShelf,
-})
+});
