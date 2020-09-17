@@ -1,9 +1,7 @@
 /*
-Nome - 14/09/20 (concluído)
+Nome - 16/09/20 (concluído)
 Perfil do Usuário:
--Apresentando perfil do usuário com foto, nome e sobre.
--Puxando as Prateleiras
--Responsivo
+-Colocado o Profile em Shelves, estava invertido
 */
 
 import axios from 'axios';
@@ -11,7 +9,6 @@ import React, { useState, useEffect } from 'react';
 
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledHeadProfile } from '../../components/styled/';
-import Shelves from '../shelves';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
@@ -36,7 +33,6 @@ const Profile = () => {
         <span className="profileUser">@{profile.user}</span>
         <span className="profileAbout">"{profile.about}"</span>
       </StyledHeadProfile>
-      <Shelves />
     </>
   );
 };

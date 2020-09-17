@@ -4,6 +4,7 @@ import { BookCard } from '../../components/styled/styled-book-card';
 import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import axios from 'axios';
+import Profile from '../profile'
 /*
   Nicolas - 15/09/20 (parcialmente concluído)
   Prateleira parte IV:
@@ -51,6 +52,8 @@ const Shelves = () => {
       .catch((err) => console.log(err));
   }, [temp]);
   return (
+    <>
+    <Profile />
     <Styled.MainWrapper>
       <div>
         <h2>WishList</h2>
@@ -128,6 +131,7 @@ const Shelves = () => {
             })}
       </div>
     </Styled.MainWrapper>
+    </>
   );
 };
 
