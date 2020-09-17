@@ -4,8 +4,9 @@ import { BookCard } from '../../components/styled/styled-book-card';
 import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import axios from 'axios';
-import { Dimmer, Image } from 'semantic-ui-react';
 import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import { Dimmer, Image, Popup } from 'semantic-ui-react';
+
 
 /*
   Nicolas - 15/09/20 (parcialmente concluído)
@@ -49,7 +50,8 @@ const Shelves = () => {
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
+
                     <span>{book.author}</span>
                   </div>
                   <Dimmer.Dimmable
@@ -90,7 +92,7 @@ const Shelves = () => {
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
                     <span>{book.author}</span>
                   </div>
                   <Dimmer.Dimmable
@@ -130,7 +132,8 @@ const Shelves = () => {
               return (
                 <BookCard key={book.id}>
                   <div className="meta-info">
-                    <strong>{book.title}</strong>
+                    <Popup content={book.title} trigger={<strong>{book.title}</strong>} />
+
                     <span>{book.author}</span>
                   </div>
                   <Dimmer.Dimmable
