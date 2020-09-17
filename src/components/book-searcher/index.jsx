@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Dimmer, Header, Image } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Image, Popup } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
@@ -82,12 +82,13 @@ const BookSearcher = () => {
             return (
               <BookCard key={book.id}>
                 <div className="meta-info">
-                  <strong>{book.volumeInfo.title}</strong>
+                  <Popup content={book.volumeInfo.title} trigger={<strong>{book.volumeInfo.title}</strong>} />
+
                   {book.volumeInfo.authors ? (
                     book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)
                   ) : (
-                    <span>Autor Desconhecido</span>
-                  )}
+                      <span>Autor Desconhecido</span>
+                    )}
                 </div>
                 <Dimmer.Dimmable
                   as={Image}
