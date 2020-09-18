@@ -8,6 +8,7 @@ const StyledTimeline = styled.main`
   align-items: center;
   margin-left: 30vw;
   margin-right: 30vw;
+  background: whitesmoke,
 
   @media (max-width: 1300px) {
     width: 90vw;
