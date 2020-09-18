@@ -8,7 +8,7 @@ const StyledCard = styled.div`
   border-radius: 25px;
   margin-top: 20px;
   box-shadow: -2px 2px 5px lightgrey;
-  background: whitesmoke;
+  background: #ffffff;
 
   div.user {
     width: 90%;

@@ -111,6 +111,7 @@ const Login = () => {
                         <input
                           placeholder="Senha"
                           name="password"
+                          type="password"
                           ref={register({
                             required: 'Senha é obrigatória!',
                           })}
