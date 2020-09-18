@@ -9672,15 +9672,9 @@ rc-util@^5.0.0, rc-util@^5.0.1, rc-util@^5.0.4, rc-util@^5.0.5, rc-util@^5.0.6, 
     shallowequal "^1.1.0"
 
 rc-virtual-list@^3.0.1, rc-virtual-list@^3.0.3:
-<<<<<<< HEAD
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/rc-virtual-list/-/rc-virtual-list-3.0.15.tgz#27afc6c036f8a7487f7a0de40897e93b65331718"
-  integrity sha512-48YKkelTUDymI7a/7owtWJDwDMPmMSqVit0tkk05UL7R5aElm6ZJ7dHkWG7YI5KC2GdIgbqgXgtBD7qbTf9QCA==
-=======
   version "3.0.16"
   resolved "https://registry.yarnpkg.com/rc-virtual-list/-/rc-virtual-list-3.0.16.tgz#6e8a8ba8bf52c32a75f4bbe5cdff5ee960f5d8ca"
   integrity sha512-3lghwR6AbCsj5JIWlwJ4zK1cS/e7JLYKA+RnC6JrMz11dGgoM0jF4KkK3UzToG1APSSu42Oy4pe2OT42+nRJ2g==
->>>>>>> Dev
   dependencies:
     classnames "^2.2.6"
     rc-resize-observer "^0.2.3"
@@ -9748,10 +9742,10 @@ react-form@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-form/-/react-form-4.0.1.tgz#f442adae7142261a6650a63001c49827e4317ca5"
   integrity sha512-vhsCuBLZJYjm6vd8TBxIhIWeB/8Jg4mmmiR3Zj+1zIGBM39qJf1CLqekadLp0J9NeW0EsZxUnBtbmEnMeZ/7Pw==
 
-react-hook-form@^6.8.2:
-  version "6.8.2"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.8.2.tgz#2a63b3d8578bd4f7965767ae4e205c2c24a1c5bc"
-  integrity sha512-9Xz1uz61fCMtQ0MTTnTIDqUpWWi+livCUsYcIOpUrlJXDHJ7QgDLF3wVKcmLIX727FFyGzesXkVCg8cQuRy8OQ==
+react-hook-form@^6.8.3:
+  version "6.8.3"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.8.3.tgz#208f46b96ced2859e2a3465eef8125751e99e4ee"
+  integrity sha512-IsYcATD4fodv9BiwWBwiBHE50+IyvhpPTi+jIab4fQZLbDPJnN7YXnJ+/2oMXDJ94n+PnUs4wklr9pg8TNdOrQ==
 
 react-icons@^3.11.0:
   version "3.11.0"
