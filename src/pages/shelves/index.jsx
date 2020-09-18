@@ -7,7 +7,10 @@ import axios from 'axios';
 import Profile from '../profile';
 import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
 import BookFeedback from '../../components/book-feedback';
-import { Dimmer, Image, Popup, Tab, Container } from 'semantic-ui-react';
+import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
+import Swal from 'sweetalert2';
+import emptyShelves from '../../assets/img/emptyShelves.svg';
+import { Link } from 'react-router-dom';
 
 /*
   Nicolas - 15/09/20 (parcialmente concluído)
@@ -36,7 +39,13 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty1.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.Search>
+                <Link to="/home">
+                  Clique aqui para pesquisar os seus livros favoritos e adicionar a sua prateleira{' '}
+                </Link>
+              </Styled.Search>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -51,8 +60,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -73,9 +99,16 @@ const Shelves = () => {
                       />
 
                       <Styled.ShelfButton
-                        onClick={() =>
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf))
-                        }>
+                        onClick={() => {
+                          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Movido para prateleira "Estou Lendo"!',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
+                        }}>
                         Ler
                       </Styled.ShelfButton>
                     </BookCard>
@@ -91,7 +124,8 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty2.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -106,8 +140,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -126,9 +177,16 @@ const Shelves = () => {
                         src={book.image_url ? book.image_url : bookNotFound}
                       />
                       <Styled.ShelfButton
-                        onClick={() =>
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf))
-                        }>
+                        onClick={() => {
+                          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Movido para prateleira "Lido"!',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
+                        }}>
                         Lido
                       </Styled.ShelfButton>
                     </BookCard>
@@ -144,7 +202,8 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty3.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -159,8 +218,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -192,9 +268,9 @@ const Shelves = () => {
   return (
     <>
       <Profile />
-      <Container>
+      <Styled.ContainerShelves>
         <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </Container>
+      </Styled.ContainerShelves>
     </>
   );
 };

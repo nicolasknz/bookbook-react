@@ -9,6 +9,7 @@ import UserDefault from '../../../assets/img/userDefault.jpg';
 import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
+import Swal from 'sweetalert2';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -110,8 +111,15 @@ const TopBar = () => {
                       color="red"
                       text="Sair"
                       onClick={() => {
-                        window.localStorage.clear();
-                        dispatch(login('', ''));
+                        Swal.fire({
+                          title: `Volte logo, ${session.user.name}!`,
+                          confirmButtonText: `Sair`,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.localStorage.clear();
+                            dispatch(login('', ''));
+                          }
+                        });
                       }}
                     />
                   </Dropdown.Menu>

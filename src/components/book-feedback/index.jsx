@@ -10,6 +10,7 @@ import { Header, Image, Modal, Form, TextArea, Rating } from 'semantic-ui-react'
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import { ModalButton, ModalFormButton } from './style.js'
+import Swal from 'sweetalert2';
 
 const BookFeedback = ({ book }) => {
   const session = useSelector((state) => state.session)
@@ -61,7 +62,7 @@ const BookFeedback = ({ book }) => {
         as={Form}
         trigger={<ModalButton>Avaliar</ModalButton>}
       >
-        <Modal.Header>Conte-nos o que achou do Livro.</Modal.Header>
+        <Modal.Header>Conte-nos o que achou do livro.</Modal.Header>
         <Modal.Content image>
           <Image size='small' src={book.image_url} wrapped />
           <Modal.Description>
@@ -69,7 +70,7 @@ const BookFeedback = ({ book }) => {
             <Form>
               <Form.Field
                 control={TextArea}
-                style={{ width: 230 }}
+                style={{ width: 300 }}
                 label="Comentário"
                 onChange={changeComment}
                 value={comment}
@@ -91,6 +92,15 @@ const BookFeedback = ({ book }) => {
           <ModalFormButton
             content="Concluir Avaliação"
             type="submit"
+            onClick={() => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Avaliação feita com sucesso!',
+                showConfirmButton: false,
+                timer: 1300
+              })
+            }}
           >Concluir Avaliação</ModalFormButton>
         </Modal.Actions>
       </Modal>
