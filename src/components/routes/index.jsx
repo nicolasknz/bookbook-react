@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { routesNotAuth, routesAuth } from './helper.js';
 import { useSelector } from 'react-redux';
+import Main from '../defaultPage/main/';
 
 /*
 Vinicius - 14/09/20 (concluído)
@@ -20,6 +21,7 @@ const Routes = (props) => {
     <Switch>
       {routesRender.map((item, index) => (
         <Route key={index} exact path={item.path}>
+          {session.token && <Main />}
           <item.page />
         </Route>
       ))}

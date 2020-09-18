@@ -4,9 +4,9 @@ import headProfile from '../../../assets/img/bg-profile.png';
 
 const StyledHeadProfile = styled.div`
   border-bottom: 2px solid lightgrey;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+  top: -80px;
+  left: 0px;
   width: 100vw;
   height: 500px;
   background-image: url(${headProfile});
@@ -17,19 +17,21 @@ const StyledHeadProfile = styled.div`
   align-items: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-bottom: 50px;
+  z-index: -1;
 
   img {
     border: 5px solid grey;
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    margin-top: 220px;
+    margin-top: 240px;
   }
 
   span.profileName {
     font-size: 40px;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 10px;
     text-decoration: capitalize;
   }
 
@@ -64,11 +66,13 @@ const StyledHeadProfile = styled.div`
 
     span.profileUser {
       font-size: 12px;
+      margin-top: -10px;
     }
 
     span.profileAbout {
       font-size: 10px;
       text-align: center;
+      margin-top: 0px;
     }
   }
 `;

@@ -58,9 +58,9 @@ const Login = () => {
     axios
       .post(toAuthenticate, { ...data })
       .then((res) => {
-        dispatch(login(res.data.auth_token, data));
+        dispatch(login(res.data.auth_token, res.data.user));
         window.localStorage.setItem('token', res.data.auth_token);
-        console.log('usuario logado');
+        window.localStorage.setItem('currentUser', JSON.stringify(res.data.user));
         history.push('/');
       })
       .catch((err) => {
@@ -111,6 +111,7 @@ const Login = () => {
                         <input
                           placeholder="Senha"
                           name="password"
+                          type="password"
                           ref={register({
                             required: 'Senha é obrigatória!',
                           })}
