@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-//Example:
-//import bookList from "./bookList";
+import session from "./session";
+import userBooks from "./user-books"
 
-export default combineReducers({});
+export default combineReducers({ session, userBooks });

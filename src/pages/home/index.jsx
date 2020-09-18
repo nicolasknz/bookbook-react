@@ -1,10 +1,10 @@
-import React from "react";
-import Main from "../../components/defaultPage/main";
+import React from 'react';
+import BookSearcher from '../../components/book-searcher';
 
 const Home = () => {
   return (
     <>
-      <Main></Main>
+      <BookSearcher />
     </>
   );
 };

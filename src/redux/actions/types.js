@@ -1,3 +1,5 @@
-//Example: 
-//export const ADD_CHARACTER = "ADD_CHARACTER";
-//export const REMOVE_CHARACTER = "REMOVE_CHARACTER";
+export const LOGIN = "LOGIN";
+export const ADD_BOOK = "ADD_BOOK";
+export const BOOK_LIST = "BOOK_LIST";
+export const DELETE_BOOK = "DELETE_BOOK";
+export const CHANGE_SHELF = "CHANGE_SHELF";

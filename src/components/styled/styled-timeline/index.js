@@ -1,12 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const StyledTimeline = styled.main`
-  width: 80vw;
+const StyledTimeline = styled.main`
+  width: 40vw;
   height: 100%;
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 10vw;
-  margin-right: 10vw;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30vw;
+  margin-right: 30vw;
+  background: whitesmoke,
+
+  @media (max-width: 1300px) {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
 `;
+
+export default StyledTimeline;

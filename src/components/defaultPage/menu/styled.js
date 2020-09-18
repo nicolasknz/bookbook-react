@@ -3,10 +3,26 @@ import styled from "styled-components";
 export const StyledLogo = styled.img`
   width: 50px;
   margin-top: 5px;
+  cursor: pointer;
 
   @media (max-width: 480px) {
     width: 40px;
     margin-top: 10px;
+  }
+`;
+
+export const StyledUser = styled.img`
+  border-radius: 20px;
+  width: 40px!important;
+  height: 40px!important;
+`;
+
+export const NameUser = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
   }
 `;
 
