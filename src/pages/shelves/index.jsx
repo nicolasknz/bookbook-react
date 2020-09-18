@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BookCard } from '../../components/styled/styled-book-card';
-import * as Styled from './styles';
-import bookNotFound from '../../assets/img/book-not-found.jpg';
-import Profile from '../profile';
-import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
-import BookFeedback from '../../components/book-feedback';
-import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
-import Swal from 'sweetalert2';
-import emptyShelves from '../../assets/img/emptyShelves.svg';
 import { Link } from 'react-router-dom';
 
-/*
-  Nicolas - 15/09/20 (parcialmente concluído)
-  Prateleira parte IV:
-  - Criar a lógica de troca de livros entre as prateleiras.
-  * OBS * : criei uma variavel temporaria só pra renderizar novamente os livros,
-    é uma solução provisória, pois é necessario adicionar os livros no redux 
-*/
+import Swal from 'sweetalert2';
+
+import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
+import * as Styled from './styles';
+
+import bookNotFound from '../../assets/img/book-not-found.jpg';
+import emptyShelves from '../../assets/img/emptyShelves.svg';
+
+import BookFeedback from '../../components/book-feedback';
+import Profile from '../profile';
+
+import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
 
 const Shelves = () => {
   const [active, setActive] = useState(false);

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import TopBar from '../menu';
 
 const Main = (props) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
@@ -9,27 +9,12 @@ import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
-/*
-  Nicolas - 10/09/20 (concluído)
-  Buscador de livres:
-    -Criar um input de busca 
-    -Buscar na API do google os livros
-    -Responsivo 
-
-  Bruno - 14/09/20 (concluído)
-  Buscador de livres:
-    -Adicionado onClick para adicionar a prateleira
-    -Adicionado Dimmer
-
-*/
-
 const BookSearcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
   const [active, setActive] = useState(false);
 
   const dispatch = useDispatch();
-  const userBooks = useSelector((state) => state.userBooks);
   const session = useSelector((state) => state.session);
 
   const handleSubmit = (e) => {

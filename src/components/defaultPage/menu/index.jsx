@@ -41,7 +41,7 @@ const TopBar = () => {
             </Grid.Column>
             <Grid.Column>
               <MenuCenter>
-                {location.pathname == '/' && (
+                {location.pathname === '/' && (
                   <>
                     <div className="div-home-active">
                       <AiFillHome className="icon-home" />
@@ -62,7 +62,7 @@ const TopBar = () => {
                     </div>
                   </>
                 )}
-                {location.pathname == '/home' && (
+                {location.pathname === '/home' && (
                   <>
                     <div
                       className="div-home"

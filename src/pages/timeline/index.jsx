@@ -5,22 +5,8 @@ import { Rating } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledTimeline, StyledCard } from '../../components/styled';
-import * as Styled from './styles';
 import { useSelector } from 'react-redux';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
-
-const Loading = () => (
-  <Segment>
-    <Dimmer active inverted>
-      <Loader size="massive">Loading</Loader>
-    </Dimmer>
-
-    <Styled.ImageLoading
-      src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png"
-      style={{}}
-    />
-  </Segment>
-);
+import { Loading } from './helper';
 
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
@@ -45,8 +31,8 @@ const Timeline = () => {
       ) : (
         bookList &&
         bookList.map((book, index) => (
-          <StyledTimeline>
-            <StyledCard key={index}>
+          <StyledTimeline key={index}>
+            <StyledCard>
               <div className="user">
                 <img
                   src={book.creator.image_url ? book.creator.image_url : userDefault}
