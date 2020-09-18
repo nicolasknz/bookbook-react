@@ -1,8 +1,8 @@
 import { LOGIN, EDIT_USER } from "../actions/types";
 
 const defaultState = {
-  token: localStorage.getItem("token") || "",
-  user: JSON.parse(localStorage.getItem("currentUser")) || {},
+  token: localStorage.getItem('token') || '',
+  user: JSON.parse(localStorage.getItem('currentUser')) || {},
 };
 
 const session = (state = defaultState, action) => {
