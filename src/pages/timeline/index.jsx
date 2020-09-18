@@ -1,9 +1,3 @@
-/*
-  Paulo - 17/09/20 (concluído)
-  Timeline:
-    -Invertido a cor do Card com a cor do fundo da tela.
-*/
-
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'semantic-ui-react';
@@ -12,30 +6,17 @@ import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledTimeline, StyledCard } from '../../components/styled';
 import { useSelector } from 'react-redux';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
-
-const Loading = () => (
-  <Segment>
-    <Dimmer active inverted>
-      <Loader size="massive">Loading</Loader>
-    </Dimmer>
-
-    <Image
-      src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png"
-      style={{ width: '100vw', height: '80vh' }}
-    />
-  </Segment>
-);
+import { Loading } from './helper';
 
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const session = useSelector((state) => state.session);
+  const { token } = useSelector((state) => state.session);
 
   useEffect(() => {
     axios
       .get(`https://ka-users-api.herokuapp.com/book_reviews`, {
-        headers: { Authorization: session.token },
+        headers: { Authorization: token },
       })
       .then((res) => {
         setLoading(false);
@@ -50,8 +31,8 @@ const Timeline = () => {
       ) : (
         bookList &&
         bookList.map((book, index) => (
-          <StyledTimeline>
-            <StyledCard key={index}>
+          <StyledTimeline key={index}>
+            <StyledCard>
               <div className="user">
                 <img
                   src={book.creator.image_url ? book.creator.image_url : userDefault}

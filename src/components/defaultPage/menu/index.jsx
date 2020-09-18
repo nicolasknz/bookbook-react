@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StyledMenu from '../../styled/styled-menu';
 import { MenuCenter, MenuLeft, MenuRight, StyledLogo, StyledUser, NameUser } from './styled';
 import { Grid, Feed, Dropdown } from 'semantic-ui-react';
-import { AiOutlineHome, AiFillHome } from 'react-icons/ai';
+import { AiOutlineHome, AiFillHome, AiOutlineUser } from 'react-icons/ai';
+import { FaUserAlt } from 'react-icons/fa';
 import { BsSearch } from 'react-icons/bs';
 import { RiSearchFill } from 'react-icons/ri';
 import UserDefault from '../../../assets/img/userDefault.jpg';
@@ -10,8 +11,7 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 import Swal from 'sweetalert2';
-import ChangeProfile from '../../../pages/profile/change-profile';
-import axios from 'axios';
+import ChangeProfile from '../../change-profile';
 import { Modal } from 'semantic-ui-react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,20 +22,10 @@ const TopBar = () => {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
   const [open, setOpen] = useState(false);
-  const [profile, setProfile] = useState([]);
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
-    const userId = session.user.id;
-
-    axios
-      .get(`https://ka-users-api.herokuapp.com/users/${userId}`, {
-        headers: { Authorization: session.token },
-      })
-      .then((res) => setProfile(res.data));
-  }, []);
-
+  
   return (
     <>
       <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}>
@@ -51,7 +41,7 @@ const TopBar = () => {
             </Grid.Column>
             <Grid.Column>
               <MenuCenter>
-                {location.pathname == '/' && (
+                {location.pathname === '/' && (
                   <>
                     <div className="div-home-active">
                       <AiFillHome className="icon-home" />
@@ -63,9 +53,16 @@ const TopBar = () => {
                       }}>
                       <BsSearch className="icon-search" />
                     </div>
+                    <div
+                      className="div-user"
+                      onClick={() => {
+                        history.push('/shelves');
+                      }}>
+                      <AiOutlineUser className="icon-user" />
+                    </div>
                   </>
                 )}
-                {location.pathname == '/home' && (
+                {location.pathname === '/home' && (
                   <>
                     <div
                       className="div-home"
@@ -76,6 +73,13 @@ const TopBar = () => {
                     </div>
                     <div className="div-search-active">
                       <RiSearchFill className="icon-search" />
+                    </div>
+                    <div
+                      className="div-user"
+                      onClick={() => {
+                        history.push('/shelves');
+                      }}>
+                      <AiOutlineUser className="icon-user" />
                     </div>
                   </>
                 )}
@@ -95,6 +99,9 @@ const TopBar = () => {
                       }}>
                       <BsSearch className="icon-search" />
                     </div>
+                    <div className="div-user-active">
+                      <FaUserAlt className="icon-user-active" />
+                    </div>
                   </>
                 )}
               </MenuCenter>
@@ -105,20 +112,15 @@ const TopBar = () => {
                   <Feed.Event>
                     <Feed.Label className="user-default">
                       {session && session.user.image_url ? (
-                        <StyledUser src={profile.image_url} />
+                        <StyledUser src={session.user.image_url} />
                       ) : (
                         <img src={UserDefault} />
                       )}
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
-                <Dropdown direction="left" text={<NameUser>{profile.name} </NameUser>}>
+                <Dropdown direction="left" text={<NameUser>{session.user.name} </NameUser>}>
                   <Dropdown.Menu>
-                    <Dropdown.Item
-                      icon="user"
-                      text="Meu Perfil"
-                      onClick={() => history.push('/shelves')}
-                    />
                     <Dropdown.Item
                       icon="edit"
                       text="Alterar informações"

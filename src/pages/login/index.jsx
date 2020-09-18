@@ -1,45 +1,14 @@
-/*
-  Bruno - 14/09/20 (concluído)
-  Tela de Login:
-    -Reformulei o formulario
-    -Adicionado a biblioteca semantic 
-    -Validações feitas pelo hook-form
-    -Responsivo
-*/
-
-/*
-  Vinicius - 14/09/20 (concluído)
-  Tela de Login:
-    - Incluí o método Link do react-router-dom
-    - Coloquei o Link no link de se registrar
-    - Incluí armazenamento no localStorage
-*/
-
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
+import { login } from '../../redux/actions/session';
 
 import axios from 'axios';
 
-import { useHistory, Link } from 'react-router-dom';
-import { useDispatch, useStore } from 'react-redux';
-import { login } from '../../redux/actions/session';
-import { useForm } from 'react-hook-form';
-
-import {
-  ImageBox,
-  LogoLogin,
-  Title,
-  StyledButton,
-  LoginBox,
-  LoginIllustration,
-  Background,
-  StyledContainer,
-  Register,
-  LogoCenter,
-  ErrorMessage,
-} from './styles';
-
-import StyledContainerCenter from '../../components/styled/styled-container';
-
+import * as Styled from './styles';
+import ContainerCenter from '../../components/styled/styled-container';
 import { Grid, Form } from 'semantic-ui-react';
 
 import logo from '../../assets/img/logo_com_transparencia.png';
@@ -48,7 +17,7 @@ import loginIllustration from '../../assets/img/login.svg';
 const Login = () => {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState('');
-  const { register, handleSubmit, errors, setError } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const dispatch = useDispatch();
 
@@ -67,28 +36,27 @@ const Login = () => {
         if (err.response.status === 401) {
           return setErrorMessage('Usuário/Senha incorreto.');
         }
-
         setErrorMessage('Algo deu errado! Tente novamente.');
       });
   };
 
   return (
     <>
-      <Background>
-        <StyledContainerCenter>
-          <StyledContainer>
+      <Styled.Background>
+        <ContainerCenter>
+          <Styled.ContainerLogin>
             <Grid stackable columns={2}>
               <Grid.Row>
                 <Grid.Column>
-                  <ImageBox>
-                    <LoginIllustration src={loginIllustration} />
-                  </ImageBox>
+                  <Styled.ImageBox>
+                    <Styled.LoginIllustration src={loginIllustration} />
+                  </Styled.ImageBox>
                 </Grid.Column>
                 <Grid.Column>
-                  <LoginBox>
-                    <LogoCenter>
-                      <LogoLogin src={logo} />
-                    </LogoCenter>
+                  <Styled.LoginBox>
+                    <Styled.LogoCenter>
+                      <Styled.LogoLogin src={logo} />
+                    </Styled.LogoCenter>
                     <Form onSubmit={handleSubmit(logingIn)}>
                       <Form.Field required>
                         <label>Usuário</label>
@@ -100,9 +68,9 @@ const Login = () => {
                           })}
                         />
                         {errors.user && (
-                          <ErrorMessage>
+                          <Styled.ErrorMessage>
                             <b> Erro: </b> {errors.user.message}
-                          </ErrorMessage>
+                          </Styled.ErrorMessage>
                         )}
                       </Form.Field>
 
@@ -117,26 +85,26 @@ const Login = () => {
                           })}
                         />
                         {errors.password && (
-                          <ErrorMessage>
+                          <Styled.ErrorMessage>
                             <b> Erro: </b> {errors.password.message}
-                          </ErrorMessage>
+                          </Styled.ErrorMessage>
                         )}
                       </Form.Field>
-                      <Register>
+                      <Styled.Register>
                         <Link to="/register">Não possui conta? Registrar-se!</Link>
-                      </Register>
-                      <StyledButton type="submit" inverted color="red">
+                      </Styled.Register>
+                      <Styled.ButtonForm type="submit" inverted color="red">
                         Entrar
-                      </StyledButton>
+                      </Styled.ButtonForm>
                       {errorMessage}
                     </Form>
-                  </LoginBox>
+                  </Styled.LoginBox>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
-          </StyledContainer>
-        </StyledContainerCenter>
-      </Background>
+          </Styled.ContainerLogin>
+        </ContainerCenter>
+      </Styled.Background>
     </>
   );
 };

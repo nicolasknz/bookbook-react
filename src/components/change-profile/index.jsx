@@ -1,34 +1,28 @@
-/*
-Bruno - 18/09/20 (concluído)
-Concluido a parte de atualizar informações do usuário
--
-*/
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom';
+
 import axios from 'axios';
-import { Description, ErrorMessage, ButtonContainer } from './styles';
 import Swal from 'sweetalert2';
 
+import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
+import * as Styled from './styles';
+
 const UserEdit = ({ setOpen }) => {
-  const history = useHistory();
-  const [profile, setProfile] = useState([]);
   const [showButton, setShowButton] = useState(true);
+  const { token, user } = useSelector((state) => state.session);
+
   const [errorMessage, setErrorMessage] = useState({
     name: false,
     email: false,
     user: false,
     default: false,
   });
-  const session = useSelector((state) => state.session);
   const [newUser, setNewUser] = useState({
-    name: profile.name,
-    user: profile.user,
-    about: profile.about,
-    image: profile.image,
-    email: profile.email,
+    name: user.name,
+    user: user.user,
+    about: user.about,
+    image: user.image,
+    email: user.email,
   });
 
   const changeName = (e) => {
@@ -86,20 +80,10 @@ const UserEdit = ({ setOpen }) => {
     setNewUser({ image: e.target.value });
   };
 
-  useEffect(() => {
-    const userId = session.user.id;
-
-    axios
-      .get(`https://ka-users-api.herokuapp.com/users/${userId}`, {
-        headers: { Authorization: session.token },
-      })
-      .then((res) => setProfile(res.data));
-  }, []);
-
   const onSubmit = () => {
     axios
       .put(
-        `https://ka-users-api.herokuapp.com/users/${session.user.id}`,
+        `https://ka-users-api.herokuapp.com/users/${user.id}`,
         {
           user: {
             name: newUser.name,
@@ -110,11 +94,10 @@ const UserEdit = ({ setOpen }) => {
           },
         },
         {
-          headers: { Authorization: session.token },
+          headers: { Authorization: token },
         }
       )
       .then(() => {
-        setOpen(false);
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -122,7 +105,10 @@ const UserEdit = ({ setOpen }) => {
           showConfirmButton: false,
           timer: 1300,
         });
-        window.location.reload(); 
+        setTimeout(() => {
+          setOpen(false);
+          window.location.reload();
+        }, 1500);
       })
       .catch((err) => {
         if (err.response.status === 400) {
@@ -135,15 +121,15 @@ const UserEdit = ({ setOpen }) => {
     <>
       <Modal.Header>Alterar informações</Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={profile.image_url} wrapped />
+        <Image size="medium" src={user.image_url} wrapped />
         <Modal.Description>
-          <Description>
+          <Styled.Description>
             <Form onSubmit={onSubmit}>
               <Form.Group widths="equal">
                 <Form.Input
                   fluid
                   label="Nome e Sobrenome"
-                  defaultValue={profile.name}
+                  defaultValue={user.name}
                   onChange={changeName}
                   name="name"
                 />
@@ -152,7 +138,7 @@ const UserEdit = ({ setOpen }) => {
                   fluid
                   label="Email"
                   onChange={changeEmail}
-                  defaultValue={profile.email}
+                  defaultValue={user.email}
                   name="email"
                 />
               </Form.Group>
@@ -161,32 +147,38 @@ const UserEdit = ({ setOpen }) => {
                   fluid
                   label="Usuário"
                   onChange={changeUser}
-                  defaultValue={profile.user}
+                  defaultValue={user.user}
                   name="user"
                 />
                 <Form.Input
                   fluid
                   label="Foto"
                   onChange={changeImage}
-                  defaultValue={profile.image_url}
+                  defaultValue={user.image_url}
                   name="image_url"
                 />
               </Form.Group>
               <label>
                 <b>Sobre você </b>
               </label>
-              <TextArea label="Sobre você" onChange={changeAbout} defaultValue={profile.about} />
-              <ButtonContainer>
-                {errorMessage.name && <ErrorMessage> Nome: nome inválido </ErrorMessage>}
+              <TextArea label="Sobre você" onChange={changeAbout} defaultValue={user.about} />
+              <Styled.ButtonContainer>
+                {errorMessage.name && (
+                  <Styled.ErrorMessage> Nome: nome inválido </Styled.ErrorMessage>
+                )}
                 {errorMessage.user && (
-                  <ErrorMessage> Usuário: formato inválido (apenas letras e números) </ErrorMessage>
+                  <Styled.ErrorMessage>
+                    Usuário: formato inválido (apenas letras e números)
+                  </Styled.ErrorMessage>
                 )}
-                {errorMessage.email && <ErrorMessage> E-mail: formato inválido </ErrorMessage>}
+                {errorMessage.email && (
+                  <Styled.ErrorMessage> E-mail: formato inválido </Styled.ErrorMessage>
+                )}
                 {errorMessage.default && (
-                  <ErrorMessage> Nenhuma informação foi alterada. </ErrorMessage>
+                  <Styled.ErrorMessage> Nenhuma informação foi alterada. </Styled.ErrorMessage>
                 )}
-              </ButtonContainer>
-              <ButtonContainer>
+              </Styled.ButtonContainer>
+              <Styled.ButtonContainer>
                 <Button color="red" onClick={() => setOpen(false)}>
                   Cancelar
                 </Button>
@@ -199,9 +191,9 @@ const UserEdit = ({ setOpen }) => {
                     type="submit"
                   />
                 )}
-              </ButtonContainer>
+              </Styled.ButtonContainer>
             </Form>
-          </Description>
+          </Styled.Description>
         </Modal.Description>
       </Modal.Content>
     </>

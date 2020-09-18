@@ -1,6 +1,5 @@
-import React from "react";
-
-import TopBar from "../menu";
+import React from 'react';
+import TopBar from '../menu';
 
 const Main = (props) => {
   return (

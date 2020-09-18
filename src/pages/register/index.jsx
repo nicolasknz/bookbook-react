@@ -1,22 +1,6 @@
-/*
-  Willian - 10/09/20 (concluído)
-  Cadastro de Usuário:
-    -Criar um formulário 
-    -Fazer envio das Informações para API 
-    -Validações no formulário 
-*/
-
-/*
-  Vinicius - 14/09/20 (concluído)
-  Tela de Registro:
-    - Incluí o método Link do react-router-dom
-    - Coloquei o Link no link de voltar para login
-*/
-
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import 'semantic-ui-css/semantic.min.css';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
