@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BookCard } from '../../components/styled/styled-book-card';
 import * as Styled from './styles';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
-import axios from 'axios';
 import Profile from '../profile';
 import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
 import BookFeedback from '../../components/book-feedback';
@@ -25,7 +24,6 @@ const Shelves = () => {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
 
-  //livros do estado
   const books = useSelector((state) => state.userBooks);
 
   const empty1 = books.filter((book) => book.shelf === 1);

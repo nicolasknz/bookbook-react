@@ -1,9 +1,3 @@
-/*
-  Paulo - 17/09/20 (concluído)
-  Timeline:
-    -Invertido a cor do Card com a cor do fundo da tela.
-*/
-
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'semantic-ui-react';
@@ -11,8 +5,9 @@ import { Rating } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledTimeline, StyledCard } from '../../components/styled';
+import * as Styled from './styles';
 import { useSelector } from 'react-redux';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 
 const Loading = () => (
   <Segment>
@@ -20,9 +15,9 @@ const Loading = () => (
       <Loader size="massive">Loading</Loader>
     </Dimmer>
 
-    <Image
+    <Styled.ImageLoading
       src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png"
-      style={{ width: '100vw', height: '80vh' }}
+      style={{}}
     />
   </Segment>
 );
@@ -30,12 +25,12 @@ const Loading = () => (
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const session = useSelector((state) => state.session);
+  const { token } = useSelector((state) => state.session);
 
   useEffect(() => {
     axios
       .get(`https://ka-users-api.herokuapp.com/book_reviews`, {
-        headers: { Authorization: session.token },
+        headers: { Authorization: token },
       })
       .then((res) => {
         setLoading(false);
