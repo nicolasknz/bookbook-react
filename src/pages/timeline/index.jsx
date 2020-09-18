@@ -1,8 +1,9 @@
 /*
-  Paulo - 15/09/20 (concluído)
+  Paulo - 17/09/20 (concluído)
   Timeline:
-    -Refatorado token pegando do estado.
-    -Corrigido uma estilização do nome do livro que estava estourando.
+    -Alterado o padrão e tamanho da imagem de profile.
+    -Colocado as prateleiras para ficar mais próximas ao header.
+    -Alterado a bordar da imagem do usuário.
 */
 
 import axios from "axios";
