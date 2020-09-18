@@ -1,8 +1,7 @@
 /*
-  Paulo - 15/09/20 (concluído)
+  Paulo - 17/09/20 (concluído)
   Timeline:
-    -Refatorado token pegando do estado.
-    -Corrigido uma estilização do nome do livro que estava estourando.
+    -Invertido a cor do Card com a cor do fundo da tela.
 */
 
 import axios from "axios";
