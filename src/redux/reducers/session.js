@@ -9,8 +9,6 @@ const session = (state = defaultState, action) => {
   switch (action.type) {
     case LOGIN:
       return { ...state, token: action.token, user: action.user };
-    case EDIT_USER:
-      return { ...state, user: action.userEdited };
     default:
       return state;
   }

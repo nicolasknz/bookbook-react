@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StyledMenu from '../../styled/styled-menu';
 import { MenuCenter, MenuLeft, MenuRight, StyledLogo, StyledUser, NameUser } from './styled';
 import { Grid, Feed, Dropdown } from 'semantic-ui-react';
@@ -10,7 +10,9 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 import Swal from 'sweetalert2';
-import ChangeProfile from "../../../pages/profile";
+import ChangeProfile from '../../../pages/profile/change-profile';
+import axios from 'axios';
+import { Modal } from 'semantic-ui-react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,12 +21,26 @@ import './menu.css';
 const TopBar = () => {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
-
+  const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState([]);
   const history = useHistory();
   const location = useLocation();
 
+  useEffect(() => {
+    const userId = session.user.id;
+
+    axios
+      .get(`https://ka-users-api.herokuapp.com/users/${userId}`, {
+        headers: { Authorization: session.token },
+      })
+      .then((res) => setProfile(res.data));
+  }, []);
+
   return (
     <>
+      <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}>
+        <ChangeProfile setOpen={setOpen} />
+      </Modal>
       <StyledMenu>
         <Grid>
           <Grid.Row columns={3}>
@@ -89,21 +105,25 @@ const TopBar = () => {
                   <Feed.Event>
                     <Feed.Label className="user-default">
                       {session && session.user.image_url ? (
-                        <StyledUser src={session.user.image_url} />
+                        <StyledUser src={profile.image_url} />
                       ) : (
                         <img src={UserDefault} />
                       )}
                     </Feed.Label>
                   </Feed.Event>
                 </Feed>
-                <Dropdown direction="left" text={<NameUser>{session.user.name} </NameUser>}>
+                <Dropdown direction="left" text={<NameUser>{profile.name} </NameUser>}>
                   <Dropdown.Menu>
                     <Dropdown.Item
                       icon="user"
                       text="Meu Perfil"
                       onClick={() => history.push('/shelves')}
                     />
-                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <ChangeProfile/>} />
+                    <Dropdown.Item
+                      icon="edit"
+                      text="Alterar informações"
+                      onClick={() => setOpen(true)}
+                    />
                     <Dropdown.Item
                       icon="sign-out"
                       color="red"
