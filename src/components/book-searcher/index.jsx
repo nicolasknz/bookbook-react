@@ -3,10 +3,11 @@ import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Dimmer, Header, Image } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Image, Popup } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
-import { addBook } from '../../redux/actions/user-books';
+import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 /*
   Nicolas - 10/09/20 (concluído)
@@ -29,6 +30,7 @@ const BookSearcher = () => {
 
   const dispatch = useDispatch();
   const userBooks = useSelector((state) => state.userBooks);
+  const session = useSelector((state) => state.session);
 
   console.log(userBooks);
 
@@ -71,7 +73,7 @@ const BookSearcher = () => {
                   primary
                   onClick={() => {
                     alert(book.volumeInfo.title + " foi adicionado a sua prateleira")
-                    dispatch(addBook(book))
+                    dispatch(requestAddBook(book.volumeInfo, session))
                   }}
                 />
               </div>
@@ -80,12 +82,13 @@ const BookSearcher = () => {
             return (
               <BookCard key={book.id}>
                 <div className="meta-info">
-                  <strong>{book.volumeInfo.title}</strong>
+                  <Popup content={book.volumeInfo.title} trigger={<strong>{book.volumeInfo.title}</strong>} />
+
                   {book.volumeInfo.authors ? (
                     book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)
                   ) : (
-                    <span>Autor Desconhecido</span>
-                  )}
+                      <span>Autor Desconhecido</span>
+                    )}
                 </div>
                 <Dimmer.Dimmable
                   as={Image}
