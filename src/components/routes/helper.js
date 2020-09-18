@@ -8,7 +8,7 @@ export const routesNotAuth = [
 export const routesAuth = [
   { path: '/', name: 'Timeline', page: Timeline },
   { path: '/home', name: 'Home', page: Home },
-  { path: '/shelves', name: 'Timeline', page: Shelves },
+  { path: '/shelves', name: 'Shelves', page: Shelves },
   { path: '/profile', name: 'Profile', page: Profile },
   //   { path: "/Perfil", name: "Perfil", page: Perfil },
 ];

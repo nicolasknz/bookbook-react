@@ -10,18 +10,16 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 import Swal from 'sweetalert2';
+import ChangeProfile from "../../../pages/profile";
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import './menu.css';
 
 const TopBar = () => {
-  const [activeHome, setActiveHome] = useState(true);
-  const [activeSearch, setActiveSearch] = useState(false);
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
 
-  console.log(session);
   const history = useHistory();
   const location = useLocation();
 
@@ -105,7 +103,7 @@ const TopBar = () => {
                       text="Meu Perfil"
                       onClick={() => history.push('/shelves')}
                     />
-                    <Dropdown.Item icon="edit" text="Alterar informações" />
+                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <ChangeProfile/>} />
                     <Dropdown.Item
                       icon="sign-out"
                       color="red"
