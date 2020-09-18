@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledHeadProfile } from '../../components/styled/';
+import Shelves from '../shelves';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
@@ -20,7 +21,7 @@ const Profile = () => {
 
     axios
       .get(`https://ka-users-api.herokuapp.com/users/${userId}`, {
-        headers: {Authorization: session.token },
+        headers: { Authorization: session.token },
       })
       .then((res) => setProfile(res.data));
   }, []);
