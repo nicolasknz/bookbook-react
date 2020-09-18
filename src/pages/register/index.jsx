@@ -97,7 +97,7 @@ const Register = () => {
                               required: 'Nome Obrigatório!',
                               pattern: {
                                 value: /^[a-zA-Z´]+\s+[a-zA-Z´]{1,}$/,
-                                message: 'Necessário Nome e Sobrenome, apenas Letras!',
+                                message: 'Necessário Nome e Sobrenome, apenas letras!',
                               },
                             })}
                           />

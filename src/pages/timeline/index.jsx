@@ -77,7 +77,7 @@ const Timeline = () => {
                   </div>
                   <span className="review">"{book.review}"</span>
                   <span className="grade">
-                    <Rating icon="star" defaultRating={Math.ceil(book.grade / 2)} maxRating={5} />
+                    <Rating icon="star" defaultRating={book.grade} maxRating={5} />
                   </span>
                 </div>
               </div>
