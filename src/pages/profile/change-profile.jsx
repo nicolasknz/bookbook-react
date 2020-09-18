@@ -12,7 +12,7 @@ import { StyledEdit, ModalTitle } from '../../components/styled'
 import axios from 'axios';
 
 const UserEdit = () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
     const history = useHistory();
     const session = useSelector((state) => state.session)
     const [newUser, setNewUser] = useState({
@@ -24,26 +24,22 @@ const UserEdit = () => {
 
     console.log(newUser)
 
-    const editUSer = (e, {name, value}) => {console.log(newUser.name.value)}
+    const editUSer = (e, {name, value}) => {setNewUser(newUser.name.value)}
     
     const handleSubmit = () => {
         console.log({newUser})
     
         axios
             .put(`https://ka-users-api.herokuapp.com/users/${session.user.id}`, {
-                headers: { Authorization: session.token},
-                body: JSON.stringify({
-                    user: { 
-                        name: newUser.name,
-                        user: newUser.user,
-                        image: newUser.image_url,
-                        about: newUser.about,
-                    },
+                "user": {
+                    "name": newUser.name,
+                    "user": newUser.user,
+                    "about": newUser.about,
+                    "image_url": newUser.image
+                    }
                 })
-            })
-            .then((res) => console.log(res.data))
-        // history.push("/shelves")
-        // setOpen(false)
+        history.push("/shelves")
+        setOpen(false)
     }
     
     return (

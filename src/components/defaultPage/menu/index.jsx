@@ -10,7 +10,7 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 import Swal from 'sweetalert2';
-import ChangeProfile from "../../../pages/profile";
+import UserEdit from "../../../pages/profile/change-profile";
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -103,7 +103,7 @@ const TopBar = () => {
                       text="Meu Perfil"
                       onClick={() => history.push('/shelves')}
                     />
-                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <ChangeProfile/>} />
+                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <UserEdit/>} />
                     <Dropdown.Item
                       icon="sign-out"
                       color="red"
