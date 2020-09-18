@@ -197,7 +197,6 @@ const UserEdit = ({ setOpen }) => {
                     icon="checkmark"
                     color="green"
                     type="submit"
-                    onClick={() => {}}
                   />
                 )}
               </ButtonContainer>

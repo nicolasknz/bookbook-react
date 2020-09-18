@@ -9,7 +9,6 @@ import React, { useState, useEffect } from 'react';
 
 import userDefault from '../../assets/img/userDefault.png';
 import { StyledHeadProfile } from '../../components/styled/';
-import Shelves from '../shelves';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
