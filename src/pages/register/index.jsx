@@ -14,15 +14,14 @@
 */
 
 import React, { useState } from 'react';
-import { ContainerForm, FormTitle } from './styles';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 import {
   ImageBox,
-  LogoLogin,
   Title,
   StyledButton,
   LoginBox,
@@ -38,7 +37,6 @@ import StyledContainerCenter from '../../components/styled/styled-container';
 
 import { Grid, Form } from 'semantic-ui-react';
 
-import logo from '../../assets/img/logo_com_transparencia.png';
 import loginIllustration from '../../assets/img/register2.svg';
 
 const Register = () => {
@@ -50,11 +48,15 @@ const Register = () => {
   const onSubmit = (values) => {
     axios
       .post('https://ka-users-api.herokuapp.com/users', { user: { ...values } })
-      .then((res) => {
-        console.log('Success:', values);
-      })
-      .then((res) => {
+      .then(() => {
         history.push('/login');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuário cadastrado com sucesso!',
+          showConfirmButton: false,
+          timer: 1300,
+        });
       })
       .catch((error) => {
         if (error.response.data.user == 'has already been taken') {
