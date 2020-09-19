@@ -24,13 +24,14 @@ const StyledHeadProfile = styled.div`
     border-radius: 50%;
     width: 150px;
     height: 150px;
-    margin-top: 220px;
+    margin-top: 240px;
   }
 
   span.profileName {
     font-size: 40px;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 10px;
     text-decoration: capitalize;
   }
 
@@ -65,11 +66,13 @@ const StyledHeadProfile = styled.div`
 
     span.profileUser {
       font-size: 12px;
+      margin-top: -10px;
     }
 
     span.profileAbout {
       font-size: 10px;
       text-align: center;
+      margin-top: 0px;
     }
   }
 `;

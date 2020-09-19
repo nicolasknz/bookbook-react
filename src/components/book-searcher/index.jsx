@@ -3,10 +3,11 @@ import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Dimmer, Header, Image } from 'semantic-ui-react';
+import { Button, Dimmer, Header, Image, Popup } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
+import BookSuggest from '../book-suggest';
 
 
 /*
@@ -21,6 +22,9 @@ import { useDispatch, useSelector } from 'react-redux';
     -Adicionado onClick para adicionar a prateleira
     -Adicionado Dimmer
 
+  Willian - 18/09/20 (concluído)
+  Sugestão de livros:
+    -Adicionado ternário para renderizar    
 */
 
 const BookSearcher = () => {
@@ -36,6 +40,7 @@ const BookSearcher = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
       .then((res) => {
@@ -52,14 +57,14 @@ const BookSearcher = () => {
           <input
             placeholder="Buscar livro"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => { setSearchTerm(e.target.value) }}
           />
           <Styled.Button>
             <SearchOutlined />
           </Styled.Button>
         </div>
       </Styled.Form>
-
+      {books.length === 0 && <BookSuggest />}
       <CardsWrapper>
         {books &&
           books.map((book) => {
@@ -82,12 +87,13 @@ const BookSearcher = () => {
             return (
               <BookCard key={book.id}>
                 <div className="meta-info">
-                  <strong>{book.volumeInfo.title}</strong>
+                  <Popup content={book.volumeInfo.title} trigger={<strong>{book.volumeInfo.title}</strong>} />
+
                   {book.volumeInfo.authors ? (
                     book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)
                   ) : (
-                    <span>Autor Desconhecido</span>
-                  )}
+                      <span>Autor Desconhecido</span>
+                    )}
                 </div>
                 <Dimmer.Dimmable
                   as={Image}
