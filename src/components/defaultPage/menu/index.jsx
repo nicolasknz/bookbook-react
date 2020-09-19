@@ -11,8 +11,7 @@ import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
 import { useHistory, useLocation } from 'react-router-dom';
 import { login } from '../../../redux/actions/session';
 import Swal from 'sweetalert2';
-import ChangeProfile from '../../change-profile';
-import { Modal } from 'semantic-ui-react';
+import UserEdit from "../../../pages/profile/change-profile";
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -126,6 +125,7 @@ const TopBar = () => {
                       text="Alterar informações"
                       onClick={() => setOpen(true)}
                     />
+                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <UserEdit/>} />
                     <Dropdown.Item
                       icon="sign-out"
                       color="red"
