@@ -8,6 +8,25 @@ import bookNotFound from '../../assets/img/book-not-found.jpg';
 import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import BookSuggest from '../book-suggest';
+
+
+/*
+  Nicolas - 10/09/20 (concluído)
+  Buscador de livres:
+    -Criar um input de busca 
+    -Buscar na API do google os livros
+    -Responsivo 
+
+  Bruno - 14/09/20 (concluído)
+  Buscador de livres:
+    -Adicionado onClick para adicionar a prateleira
+    -Adicionado Dimmer
+
+  Willian - 18/09/20 (concluído)
+  Sugestão de livros:
+    -Adicionado ternário para renderizar    
+*/
 
 const BookSearcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,6 +38,7 @@ const BookSearcher = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
       .then((res) => {
@@ -35,14 +55,14 @@ const BookSearcher = () => {
           <input
             placeholder="Buscar livro"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => { setSearchTerm(e.target.value) }}
           />
           <Styled.Button>
             <SearchOutlined />
           </Styled.Button>
         </div>
       </Styled.Form>
-
+      {books.length === 0 && <BookSuggest />}
       <CardsWrapper>
         {books &&
           books.map((book) => {
