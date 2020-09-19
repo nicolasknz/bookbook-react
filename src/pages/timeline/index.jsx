@@ -1,7 +1,13 @@
 /*
   Paulo - 17/09/20 (concluído)
   Timeline:
+<<<<<<< HEAD
     -Invertido a cor do Card com a cor do fundo da tela.
+=======
+    -Alterado o padrão e tamanho da imagem de profile.
+    -Colocado as prateleiras para ficar mais próximas ao header.
+    -Alterado a bordar da imagem do usuário.
+>>>>>>> feature/profile
 */
 
 import axios from 'axios';
