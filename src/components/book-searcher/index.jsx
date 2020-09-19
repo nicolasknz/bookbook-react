@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
@@ -8,6 +8,8 @@ import bookNotFound from '../../assets/img/book-not-found.jpg';
 import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import BookSuggest from '../book-suggest';
+
 
 /*
   Nicolas - 10/09/20 (concluído)
@@ -21,6 +23,9 @@ import Swal from 'sweetalert2';
     -Adicionado onClick para adicionar a prateleira
     -Adicionado Dimmer
 
+  Willian - 18/09/20 (concluído)
+  Sugestão de livros:
+    -Adicionado ternário para renderizar    
 */
 
 const BookSearcher = () => {
@@ -29,11 +34,11 @@ const BookSearcher = () => {
   const [active, setActive] = useState(false);
 
   const dispatch = useDispatch();
-  const userBooks = useSelector((state) => state.userBooks);
   const session = useSelector((state) => state.session);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`)
       .then((res) => {
@@ -50,14 +55,14 @@ const BookSearcher = () => {
           <input
             placeholder="Buscar livro"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => { setSearchTerm(e.target.value) }}
           />
           <Styled.Button>
             <SearchOutlined />
           </Styled.Button>
         </div>
       </Styled.Form>
-
+      {books.length === 0 && <BookSuggest />}
       <CardsWrapper>
         {books &&
           books.map((book) => {

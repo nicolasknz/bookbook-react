@@ -14,7 +14,7 @@ export const MainWrapperEmpty = styled.div`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  margin: 50px 0px;
+  margin: 50px 20px;
   color: gray;
 `;
 
@@ -34,8 +34,12 @@ export const ContainerShelves = styled(Container)`
 `;
 
 export const EmptyShelves = styled.img`
-  width: 350px;
+  width: 400px;
   margin-top: 20px;
+
+  @media (max-width: 480px) {
+    width: 250px;
+  }
 `;
 
 export const Search = styled.h3`
@@ -46,5 +50,9 @@ export const Search = styled.h3`
 
   &:hover {
     text-decoration: underline #4583a3;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 17px;
   }
 `;
