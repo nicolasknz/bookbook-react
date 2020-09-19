@@ -1,16 +1,17 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BookCard } from '../../components/styled/styled-book-card';
-import * as Styled from './styles';
-import bookNotFound from '../../assets/img/book-not-found.jpg';
-import axios from 'axios';
-import Profile from '../profile';
-import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
-import BookFeedback from '../../components/book-feedback';
+import { Link } from 'react-router-dom';
 import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
 import Swal from 'sweetalert2';
+
+import bookNotFound from '../../assets/img/book-not-found.jpg';
 import emptyShelves from '../../assets/img/emptyShelves.svg';
-import { Link } from 'react-router-dom';
+import BookFeedback from '../../components/book-feedback';
+import { BookCard } from '../../components/styled/styled-book-card';
+import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import Profile from '../profile';
+import * as Styled from './styles';
 
 /*
   Nicolas - 15/09/20 (parcialmente concluído)

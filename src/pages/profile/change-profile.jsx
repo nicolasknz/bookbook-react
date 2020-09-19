@@ -4,13 +4,14 @@ Concluido a parte de atualizar informações do usuário
 -
 */
 
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import { Description, ErrorMessage, ButtonContainer } from './styles';
+import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
 import Swal from 'sweetalert2';
+
+import { Description, ErrorMessage, ButtonContainer } from './styles';
 
 const UserEdit = ({ setOpen }) => {
   const history = useHistory();
@@ -122,7 +123,7 @@ const UserEdit = ({ setOpen }) => {
           showConfirmButton: false,
           timer: 1300,
         });
-        window.location.reload(); 
+        window.location.reload();
       })
       .catch((err) => {
         if (err.response.status === 400) {
