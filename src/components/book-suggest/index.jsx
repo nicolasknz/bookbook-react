@@ -37,7 +37,7 @@ const BookSuggest = () => {
 
 	return (
 		<>
-			<h3>Sugestão de Livros para Você!</h3>
+			<h3>Sugestões de livros para você!</h3>
 			<Styled.MainWrapper>
 				<CardsWrapper>
 					{newSuggestBooks.map((book) => {

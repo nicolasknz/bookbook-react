@@ -159,7 +159,7 @@ const UserEdit = ({ setOpen }) => {
                 />
               </Form.Group>
               <label>
-                <b>Sobre você </b>
+                <b>Meus interesse  </b> (Ex: Artes, História, Quadrinhos, Romance, etc..)
               </label>
               <TextArea label="Sobre você" onChange={changeAbout} defaultValue={user.about} />
               <Styled.ButtonContainer>
