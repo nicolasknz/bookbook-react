@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
+import { AiOutlineHome, AiFillHome, AiOutlineUser } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
+import { FaUserAlt } from 'react-icons/fa';
+import { RiSearchFill } from 'react-icons/ri';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Grid, Feed, Dropdown } from 'semantic-ui-react';
+import Swal from 'sweetalert2';
+
+import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
+import UserDefault from '../../../assets/img/userDefault.jpg';
+import UserEdit from '../../../pages/profile/change-profile';
+import { login } from '../../../redux/actions/session';
 import StyledMenu from '../../styled/styled-menu';
 import { MenuCenter, MenuLeft, MenuRight, StyledLogo, StyledUser, NameUser } from './styled';
-import { Grid, Feed, Dropdown } from 'semantic-ui-react';
-import { AiOutlineHome, AiFillHome, AiOutlineUser } from 'react-icons/ai';
-import { FaUserAlt } from 'react-icons/fa';
-import { BsSearch } from 'react-icons/bs';
-import { RiSearchFill } from 'react-icons/ri';
-import UserDefault from '../../../assets/img/userDefault.jpg';
-import LogoMenu from '../../../assets/img/LogoBrancoVerde.png';
-import { useHistory, useLocation } from 'react-router-dom';
-import { login } from '../../../redux/actions/session';
-import Swal from 'sweetalert2';
-import UserEdit from "../../../pages/profile/change-profile";
-
-import { useDispatch, useSelector } from 'react-redux';
 
 import './menu.css';
 
@@ -24,7 +24,6 @@ const TopBar = () => {
   const history = useHistory();
   const location = useLocation();
 
-  
   return (
     <>
       <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}>
@@ -125,7 +124,11 @@ const TopBar = () => {
                       text="Alterar informações"
                       onClick={() => setOpen(true)}
                     />
-                    <Dropdown.Item icon="edit" text="Alterar informações" onClick={() => <UserEdit/>} />
+                    <Dropdown.Item
+                      icon="edit"
+                      text="Alterar informações"
+                      onClick={() => <UserEdit />}
+                    />
                     <Dropdown.Item
                       icon="sign-out"
                       color="red"
