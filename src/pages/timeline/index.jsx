@@ -1,3 +1,9 @@
+/* 
+  20/09/2020 - Paulo Eduardo (concluído)
+  -Refatorado timeline com infinite scroll
+  -Colocado Progpaganda Kenzie a cada 10 posts
+  -Corrigido a imagem da propaganda 
+*/
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -5,9 +11,9 @@ import { Rating } from 'semantic-ui-react';
 
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
+import Advertising from '../../components/advertising';
 import { StyledTimeline, StyledCard } from '../../components/styled';
 import { Loading } from './helper';
-import Advertising from '../../components/advertising'
 
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
@@ -34,15 +40,17 @@ const Timeline = () => {
         document.documentElement.scrollHeight ===
       0
     ) {
-      setPostFinal(postFinal + 10);
       setShowAD(false);
+      setPostFinal(postFinal + 10);
     }
   };
 
   useEffect(() => {
     window.addEventListener('scroll', scrollPosts);
-    return () => {window.removeEventListener('scroll', scrollPosts);
-    setShowAD(true);}
+    return () => {
+      window.removeEventListener('scroll', scrollPosts);
+      setShowAD(true);
+    };
   }, [scrollPosts]);
 
   return (
@@ -88,7 +96,8 @@ const Timeline = () => {
             </StyledTimeline>
           ))
         ).slice(0, postFinal)
-      )}{showAD && <Advertising />}
+      )}
+      {showAD && <Advertising />}
     </>
   );
 };

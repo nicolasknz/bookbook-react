@@ -63,11 +63,11 @@ export const StyledAdFooter = styled.div`
   margin: 0px 1% 10px 1%;
   font-size: 20px;
 
-  img {
+  a > img {
     width: 100%;
     height: 100%;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 5px;
   }
 
   i {
