@@ -16,7 +16,7 @@ const StyledHeadProfile = styled.div`
   align-items: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin-bottom: -200px;
-  z-index: -1;
+  z-index: -10;
 
   img {
     border: 5px solid white;
@@ -47,14 +47,14 @@ const StyledHeadProfile = styled.div`
   }
 
   @media (max-width: 800px) {
-    height: 200px;
-    margin-bottom: 20px;
+    height: 380px;
+    margin-bottom: -220px;
 
     img {
-      border: 2px solid grey;
+      border: 2px solid white;
       width: 80px;
       height: 80px;
-      margin-top: 50px;
+      margin-top: 230px;
     }
 
     span.profileName {
@@ -65,12 +65,14 @@ const StyledHeadProfile = styled.div`
     span.profileUser {
       font-size: 12px;
       margin-top: -10px;
+      font-weight: bold;
     }
 
     span.profileAbout {
       font-size: 10px;
       text-align: center;
       margin-top: 0px;
+      font-weight: bold;
     }
   }
 `;
