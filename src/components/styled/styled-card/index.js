@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+/*
+ 18/09/2020 (Refatorado)
+ -Alterado o campo de autor e catedorias do livro para não estourar linhas para baixo.
+*/
+
 const StyledCard = styled.div`
   width: 97%;
   height: 100%;
@@ -101,6 +106,14 @@ const StyledCard = styled.div`
     font-weight: bold;
     font-style: italic;
     color: grey;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   div span.categories {
@@ -109,6 +122,14 @@ const StyledCard = styled.div`
     font-size: 12px;
     font-style: italic;
     color: grey;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   div span.review {

@@ -171,9 +171,8 @@ const Register = () => {
                             <option value="matematica">Matemática</option>
                             <option value="medicina">Medicina</option>
                             <option value="quimiia">Química</option>
+                            <option value="religiao">Religião e Espiritualidade</option>
                           </select>
-
-
                         </Form.Field>
                       </Form.Group>
                       <Form.Group>

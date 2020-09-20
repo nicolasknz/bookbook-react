@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledTimeline = styled.main`
   width: 40vw;
@@ -8,8 +8,8 @@ const StyledTimeline = styled.main`
   align-items: center;
   margin-left: 30vw;
   margin-right: 30vw;
-  background: whitesmoke,
-
+  background: whitesmoke; 
+  
   @media (max-width: 1300px) {
     width: 90vw;
     margin-left: 5vw;
