@@ -30,12 +30,12 @@ const BookSuggest = () => {
       axios
         .get(`https://www.googleapis.com/books/v1/volumes?q=${session.user.about}`)
         .then((res) => {
-          setNewSuggestBooks(res.data.items);
           setLoading(false);
+          setNewSuggestBooks(res.data.items);
         })
         .catch((error) => console.log(error));
     }
-  }, [session]);
+  }, [session.user.about]);
 
   return (
     <>
