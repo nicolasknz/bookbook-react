@@ -16,7 +16,7 @@ const App = () => {
         headers: { Authorization: token },
       })
       .then(({ data }) => dispatch(updateInfo(data)));
-  }, []);
+  }, [user]);
 
   return (
     <>

@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
 import * as Styled from './styles';
 
+import userDefault from '../../assets/img/userDefault.jpg';
+
 const UserEdit = ({ setOpen }) => {
   const [showButton, setShowButton] = useState(true);
   const { token, user } = useSelector((state) => state.session);
@@ -121,7 +123,7 @@ const UserEdit = ({ setOpen }) => {
     <>
       <Modal.Header>Alterar informações</Modal.Header>
       <Modal.Content image>
-        <Image size="medium" src={user.image_url} wrapped />
+        <Image size="medium" src={user.image_url ? user.image_url : userDefault} wrapped />
         <Modal.Description>
           <Styled.Description>
             <Form onSubmit={onSubmit}>

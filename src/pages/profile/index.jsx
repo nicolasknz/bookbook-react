@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import userDefault from '../../assets/img/userDefault.png';
+import userDefault from '../../assets/img/userDefault.jpg';
 import { StyledHeadProfile } from '../../components/styled/';
 
 const Profile = () => {
