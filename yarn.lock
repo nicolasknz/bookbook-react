@@ -11062,11 +11062,7 @@ react-form@^4.0.1:
   resolved "https://registry.yarnpkg.com/react-form/-/react-form-4.0.1.tgz#f442adae7142261a6650a63001c49827e4317ca5"
   integrity sha512-vhsCuBLZJYjm6vd8TBxIhIWeB/8Jg4mmmiR3Zj+1zIGBM39qJf1CLqekadLp0J9NeW0EsZxUnBtbmEnMeZ/7Pw==
 
-<<<<<<< HEAD
-react-hook-form@^6.8.2:
-=======
 react-hook-form@^6.8.3:
->>>>>>> feature/profile
   version "6.8.3"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.8.3.tgz#208f46b96ced2859e2a3465eef8125751e99e4ee"
   integrity sha512-IsYcATD4fodv9BiwWBwiBHE50+IyvhpPTi+jIab4fQZLbDPJnN7YXnJ+/2oMXDJ94n+PnUs4wklr9pg8TNdOrQ==

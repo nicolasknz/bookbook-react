@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BookCard } from '../../components/styled/styled-book-card';
 import { Link } from 'react-router-dom';
-
-import Swal from 'sweetalert2';
-
 import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
-import * as Styled from './styles';
+import Swal from 'sweetalert2';
 
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import emptyShelves from '../../assets/img/emptyShelves.svg';
-
 import BookFeedback from '../../components/book-feedback';
-import Profile from '../profile';
-
+import { BookCard } from '../../components/styled/styled-book-card';
 import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import Profile from '../profile';
+import * as Styled from './styles';
 
 const Shelves = () => {
   const [active, setActive] = useState(false);
