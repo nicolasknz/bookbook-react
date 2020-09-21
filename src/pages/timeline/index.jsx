@@ -7,17 +7,12 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-<<<<<<< HEAD
-import { Rating, Loader } from 'semantic-ui-react';
-=======
-import { Rating, Popup } from 'semantic-ui-react';
->>>>>>> a470456d21a6c83486b0e9be812307778f42e139
+import { Rating, Loader, Popup } from 'semantic-ui-react';
 
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import Advertising from '../../components/advertising';
 import { StyledTimeline, StyledCard } from '../../components/styled';
-import { Loading } from './helper';
 
 import './timeline.css';
 
