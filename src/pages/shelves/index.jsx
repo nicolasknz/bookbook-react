@@ -91,6 +91,7 @@ const Shelves = () => {
 
                       <Styled.ShelfButton
                         onClick={() => {
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
                           Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -98,7 +99,6 @@ const Shelves = () => {
                             showConfirmButton: false,
                             timer: 1500,
                           });
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
                         }}>
                         Ler
                       </Styled.ShelfButton>
@@ -169,6 +169,7 @@ const Shelves = () => {
                       />
                       <Styled.ShelfButton
                         onClick={() => {
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
                           Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -176,7 +177,6 @@ const Shelves = () => {
                             showConfirmButton: false,
                             timer: 1500,
                           });
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
                         }}>
                         Lido
                       </Styled.ShelfButton>

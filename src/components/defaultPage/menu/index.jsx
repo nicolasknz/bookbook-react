@@ -49,7 +49,7 @@ const TopBar = () => {
                     <div
                       className="div-search"
                       onClick={() => {
-                        history.push('/home');
+                        history.push('/book-search');
                       }}>
                       <BsSearch className="icon-search" />
                     </div>
@@ -62,7 +62,7 @@ const TopBar = () => {
                     </div>
                   </>
                 )}
-                {location.pathname === '/home' && (
+                {location.pathname === '/book-search' && (
                   <>
                     <div
                       className="div-home"
@@ -95,7 +95,7 @@ const TopBar = () => {
                     <div
                       className="div-search"
                       onClick={() => {
-                        history.push('/home');
+                        history.push('/book-search');
                       }}>
                       <BsSearch className="icon-search" />
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Modal, Button, Form, Image, TextArea } from 'semantic-ui-react';
 import * as Styled from './styles';
 
+import { updateInfo } from '../../redux/actions/session';
 import userDefault from '../../assets/img/userDefault.jpg';
 
 const UserEdit = ({ setOpen }) => {
@@ -16,6 +17,9 @@ const UserEdit = ({ setOpen }) => {
     user: true,
   });
   const { token, user } = useSelector((state) => state.session);
+
+  const dispatch = useDispatch();
+
 
   const [errorMessage, setErrorMessage] = useState({
     name: false,

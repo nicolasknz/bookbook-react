@@ -41,9 +41,11 @@ const BookSuggest = () => {
 
   return (
     <>
-      {session.user.about.length === 0 ? (
-        <h3>Atualize os interesses para receber sugestões!</h3>
-      ) : (
+      {session?.user?.about?.length === 0 ||
+        session?.user?.about?.length === undefined ||
+        session?.user?.about?.length === null ? (
+          <h3>Atualize os interesses para receber sugestões!</h3>
+        ) : (
           <h3>Sugestão de Livros para Você!</h3>
         )}
       {loading ? (
