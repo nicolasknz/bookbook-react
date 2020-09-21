@@ -7,13 +7,19 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { Rating, Loader } from 'semantic-ui-react';
+=======
+import { Rating, Popup } from 'semantic-ui-react';
+>>>>>>> a470456d21a6c83486b0e9be812307778f42e139
 
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import Advertising from '../../components/advertising';
 import { StyledTimeline, StyledCard } from '../../components/styled';
 import { Loading } from './helper';
+
+import './timeline.css';
 
 const Timeline = () => {
   const [bookList, setBooksList] = useState([]);
@@ -77,14 +83,26 @@ const Timeline = () => {
                 <div className="book">
                   <img src={book.image_url ? book.image_url : bookNotFound} alt={book.title} />
                   <div className="bookData">
-                    <span className="title">{book.title}</span>
+                    <Popup
+                      content={book.title}
+                      trigger={<span className="title">{book.title}</span>}
+                    />
+                    {/* <span className="title">{book.title}</span> */}
                     <div className="bookDataSecondary">
                       <span className="author">
                         {book.author ? book.author : 'Sem nome do autor'}
                       </span>
-                      <span className="categories">
+                      <Popup
+                        content={book.categories ? book.categories : 'Não categorizado'}
+                        trigger={
+                          <span className="categories">
+                            {book.categories ? book.categories : 'Não categorizado'}
+                          </span>
+                        }
+                      />
+                      {/* <span className="categories">
                         {book.categories ? book.categories : 'Não categorizado'}
-                      </span>
+                      </span> */}
                     </div>
                     <span className="review">"{book.review}"</span>
                     <span className="grade">
