@@ -12,6 +12,7 @@ import { Rating, Popup } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
 import Advertising from '../../components/advertising';
+import OtherUsers from '../../components/other-users/';
 import { StyledTimeline, StyledCard } from '../../components/styled';
 import { Loading } from './helper';
 
@@ -72,7 +73,12 @@ const Timeline = () => {
                     className="user"
                   />
                   <div className="userData">
-                    <span className="name">{book.creator.name}</span>
+                    {/* <span className="name">{book.creator.name}</span> */}
+                    <OtherUsers
+                      name={book.creator.name}
+                      photo={book.creator.image_url}
+                      id={book.creator.id}
+                    />
                     <span className="username">@{book.creator.user}</span>
                   </div>
                 </div>
