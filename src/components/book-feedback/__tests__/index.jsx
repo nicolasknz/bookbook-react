@@ -6,7 +6,6 @@ import * as redux from 'react-redux'
 const spy = jest.spyOn(redux, 'useSelector')
 spy.mockReturnValue({ session: 'test' })
 
-
 describe("Render test", () => {
   it('renders correctly', () => {
     const tree = renderer
