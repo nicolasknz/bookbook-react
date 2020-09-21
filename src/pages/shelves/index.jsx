@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
 import Swal from 'sweetalert2';
-
+import axios from 'axios';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import emptyShelves from '../../assets/img/emptyShelves.svg';
 import BookFeedback from '../../components/book-feedback';
 import { BookCard } from '../../components/styled/styled-book-card';
-import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import {
+  requestDeleteBook,
+  requestChangeBookShelf,
+  bookList,
+} from '../../redux/actions/user-books';
 import Profile from '../profile';
 import * as Styled from './styles';
 
@@ -16,6 +20,14 @@ const Shelves = () => {
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
+
+  useMemo(() => {
+    axios
+      .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books/`, {
+        headers: { Authorization: session.token },
+      })
+      .then((res) => dispatch(bookList(res.data)));
+  }, []);
 
   const books = useSelector((state) => state.userBooks);
 

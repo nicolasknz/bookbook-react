@@ -1,15 +1,7 @@
 import { ADD_BOOK, DELETE_BOOK, BOOK_LIST, CHANGE_SHELF } from './types';
 import axios from 'axios';
 
-export const requestUserBookList = (session) => (dispatch) => {
-  axios
-    .get(`https://ka-users-api.herokuapp.com/users/${session.user.id}/books/`, {
-      headers: { Authorization: session.token },
-    })
-    .then((res) => dispatch(bookList(res.data)));
-};
-
-const bookList = (bookList) => ({
+export const bookList = (bookList) => ({
   type: BOOK_LIST,
   bookList,
 });

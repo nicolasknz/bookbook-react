@@ -7,7 +7,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Rating } from 'semantic-ui-react';
+import { Rating, Loader } from 'semantic-ui-react';
 
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import userDefault from '../../assets/img/userDefault.png';
@@ -56,7 +56,7 @@ const Timeline = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <Loader active inline="centered" />
       ) : (
         (
           bookList &&
@@ -88,7 +88,7 @@ const Timeline = () => {
                     </div>
                     <span className="review">"{book.review}"</span>
                     <span className="grade">
-                      <Rating icon="star" defaultRating={book.grade} maxRating={5} disabled/>
+                      <Rating icon="star" defaultRating={book.grade} maxRating={5} disabled />
                     </span>
                   </div>
                 </div>
