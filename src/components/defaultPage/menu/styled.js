@@ -13,8 +13,6 @@ export const StyledLogo = styled.img`
 
 export const StyledUser = styled.img`
   border-radius: 20px;
-  border: 1px solid white;
-  background-color: white;
   width: 40px!important;
   height: 40px!important;
 `;

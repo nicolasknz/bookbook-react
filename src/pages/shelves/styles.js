@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { StyledButton } from '../../components/styled/styled-button';
-import { Button } from 'semantic-ui-react';
+import { Button, Container } from 'semantic-ui-react';
 
 export const MainWrapper = styled.div`
   display: flex;
@@ -8,13 +8,13 @@ export const MainWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-
-
 export const MainWrapperEmpty = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   text-align: center;
-  margin: 80px 0px;
+  align-items: center;
+  margin: 50px 20px;
   color: gray;
 `;
 
@@ -27,4 +27,32 @@ export const ButtonDelete = styled(Button)`
   position: absolute;
   top: 0px;
   left: 90px;
+`;
+
+export const ContainerShelves = styled(Container)`
+  margin-bottom: 100px;
+`;
+
+export const EmptyShelves = styled.img`
+  width: 400px;
+  margin-top: 20px;
+
+  @media (max-width: 480px) {
+    width: 250px;
+  }
+`;
+
+export const Search = styled.h3`
+  color: #4583a3;
+  padding-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline #4583a3;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 17px;
+  }
 `;

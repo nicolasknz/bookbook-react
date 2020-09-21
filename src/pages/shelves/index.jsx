@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BookCard } from '../../components/styled/styled-book-card';
-import * as Styled from './styles';
-import bookNotFound from '../../assets/img/book-not-found.jpg';
-import axios from 'axios';
-import Profile from '../profile';
-import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
-import BookFeedback from '../../components/book-feedback';
-import { Dimmer, Image, Popup, Tab, Container } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Dimmer, Image, Popup, Tab } from 'semantic-ui-react';
+import Swal from 'sweetalert2';
 
-/*
-  Nicolas - 15/09/20 (parcialmente concluído)
-  Prateleira parte IV:
-  - Criar a lógica de troca de livros entre as prateleiras.
-  * OBS * : criei uma variavel temporaria só pra renderizar novamente os livros,
-    é uma solução provisória, pois é necessario adicionar os livros no redux 
-*/
+import bookNotFound from '../../assets/img/book-not-found.jpg';
+import emptyShelves from '../../assets/img/emptyShelves.svg';
+import BookFeedback from '../../components/book-feedback';
+import { BookCard } from '../../components/styled/styled-book-card';
+import { requestDeleteBook, requestChangeBookShelf } from '../../redux/actions/user-books';
+import Profile from '../profile';
+import * as Styled from './styles';
 
 const Shelves = () => {
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
 
-  //livros do estado
   const books = useSelector((state) => state.userBooks);
 
   const empty1 = books.filter((book) => book.shelf === 1);
@@ -36,7 +30,13 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty1.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.Search>
+                <Link to="/home">
+                  Clique aqui para pesquisar os seus livros favoritos e adicionar a sua prateleira{' '}
+                </Link>
+              </Styled.Search>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -51,8 +51,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -73,9 +90,16 @@ const Shelves = () => {
                       />
 
                       <Styled.ShelfButton
-                        onClick={() =>
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf))
-                        }>
+                        onClick={() => {
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
+                          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Movido para prateleira "Estou Lendo"!',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
+                        }}>
                         Ler
                       </Styled.ShelfButton>
                     </BookCard>
@@ -91,7 +115,8 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty2.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -106,8 +131,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -126,9 +168,16 @@ const Shelves = () => {
                         src={book.image_url ? book.image_url : bookNotFound}
                       />
                       <Styled.ShelfButton
-                        onClick={() =>
-                          dispatch(requestChangeBookShelf(book.id, session, book.shelf))
-                        }>
+                        onClick={() => {
+                          dispatch(requestChangeBookShelf(book.id, session, book.shelf));
+                          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Movido para prateleira "Lido"!',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
+                        }}>
                         Lido
                       </Styled.ShelfButton>
                     </BookCard>
@@ -144,7 +193,8 @@ const Shelves = () => {
         <Tab.Pane attached={false}>
           {empty3.length === 0 && (
             <Styled.MainWrapperEmpty>
-              <h2> Sua prateleira está vazia </h2>
+              <h1> Essa prateleira está vazia </h1>
+              <Styled.EmptyShelves src={emptyShelves} />
             </Styled.MainWrapperEmpty>
           )}
           <Styled.MainWrapper>
@@ -159,8 +209,25 @@ const Shelves = () => {
                         icon="close"
                         color="red"
                         onClick={() => {
-                          alert(book.title + ' foi excluido da sua prateleira');
-                          dispatch(requestDeleteBook(book.id, session));
+                          Swal.fire({
+                            title: 'Remover Livro!',
+                            text: 'Você tem certeza que quer remover esse livro da sua prateleira?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Remover',
+                            cancelButtonText: 'Cancelar',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              dispatch(requestDeleteBook(book.id, session));
+                              Swal.fire(
+                                'Removido!',
+                                'Removido da sua prateleira com sucesso !',
+                                'success'
+                              );
+                            }
+                          });
                         }}
                       />
                     </div>
@@ -192,9 +259,9 @@ const Shelves = () => {
   return (
     <>
       <Profile />
-      <Container>
+      <Styled.ContainerShelves>
         <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </Container>
+      </Styled.ContainerShelves>
     </>
   );
 };

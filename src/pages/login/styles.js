@@ -9,7 +9,7 @@ export const LoginBox = styled.div`
 export const Background = styled.div`
   height: 100vh;
   width: 100%;
-  background-color: #d94d46;
+  background-color: #DB434E;
 
   @media (max-width: 480px) {
     background-color: #ffffff;
@@ -29,12 +29,12 @@ export const ImageBox = styled.div`
   }
 `;
 
-export const StyledButton = styled(Button)`
+export const ButtonForm = styled(Button)`
   margin-top: 5px;
   width: 100%;
 `;
 
-export const StyledContainer = styled(Container)`
+export const ContainerLogin = styled(Container)`
   background-color: white;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.109);
   border-radius: 10px;

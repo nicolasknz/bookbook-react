@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import * as Styled from './styles';
 import { BookCard, CardsWrapper } from '../../components/styled/styled-book-card';
@@ -7,6 +7,7 @@ import { Button, Dimmer, Header, Image, Popup } from 'semantic-ui-react';
 import bookNotFound from '../../assets/img/book-not-found.jpg';
 import { requestAddBook } from '../../redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import BookSuggest from '../book-suggest';
 
 
@@ -31,12 +32,10 @@ const BookSearcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
   const [active, setActive] = useState(false);
+  const userBooks = useSelector((state) => state.userBooks);
 
   const dispatch = useDispatch();
-  const userBooks = useSelector((state) => state.userBooks);
   const session = useSelector((state) => state.session);
-
-  console.log(userBooks);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -77,9 +76,28 @@ const BookSearcher = () => {
                   icon="plus"
                   primary
                   onClick={() => {
-                    alert(book.volumeInfo.title + " foi adicionado a sua prateleira")
-                    dispatch(requestAddBook(book.volumeInfo, session))
-                  }}
+                    const alreadyAdd = userBooks.some((userBook) => userBook.title === book.volumeInfo.title)
+
+                    if (alreadyAdd) {
+                      return Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Livro já adicionado a sua prateleira!',
+                        showConfirmButton: false,
+                        timer: 1300
+                      })
+                    }
+
+                    Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Livro adicionado a sua prateleira!',
+                      showConfirmButton: false,
+                      timer: 1300
+                    })
+                    dispatch(requestAddBook(book.volumeInfo, session));
+                  }
+                  }
                 />
               </div>
             );
@@ -87,7 +105,10 @@ const BookSearcher = () => {
             return (
               <BookCard key={book.id}>
                 <div className="meta-info">
-                  <Popup content={book.volumeInfo.title} trigger={<strong>{book.volumeInfo.title}</strong>} />
+                  <Popup
+                    content={book.volumeInfo.title}
+                    trigger={<strong>{book.volumeInfo.title}</strong>}
+                  />
 
                   {book.volumeInfo.authors ? (
                     book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)

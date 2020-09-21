@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import headProfile from '../../../assets/img/bg-profile.png';
 
 const StyledHeadProfile = styled.div`
-  border-bottom: 2px solid lightgrey;
   position: relative;
-  top: -80px;
+  top: -250px;
   left: 0px;
   width: 100vw;
   height: 500px;
@@ -16,11 +15,12 @@ const StyledHeadProfile = styled.div`
   flex-direction: column;
   align-items: center;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  margin-bottom: 50px;
-  z-index: -1;
+  margin-bottom: -200px;
+  z-index: -10;
 
   img {
-    border: 5px solid grey;
+    border: 5px solid white;
+    background: white;
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -38,25 +38,23 @@ const StyledHeadProfile = styled.div`
   span.profileUser {
     font-size: 20px;
     font-style: italic;
-    color: grey;
   }
 
   span.profileAbout {
     font-size: 16px;
     font-style: italic;
-    color: grey;
     margin-top: 5px;
   }
 
   @media (max-width: 800px) {
-    height: 200px;
-    margin-bottom: 20px;
+    height: 380px;
+    margin-bottom: -220px;
 
     img {
-      border: 2px solid grey;
+      border: 2px solid white;
       width: 80px;
       height: 80px;
-      margin-top: 50px;
+      margin-top: 230px;
     }
 
     span.profileName {
@@ -67,12 +65,14 @@ const StyledHeadProfile = styled.div`
     span.profileUser {
       font-size: 12px;
       margin-top: -10px;
+      font-weight: bold;
     }
 
     span.profileAbout {
       font-size: 10px;
       text-align: center;
       margin-top: 0px;
+      font-weight: bold;
     }
   }
 `;

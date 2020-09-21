@@ -22,12 +22,11 @@ Willian - 18/09/20 (concluído)
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import 'semantic-ui-css/semantic.min.css';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 import {
   ImageBox,
-  LogoLogin,
   Title,
   StyledButton,
   LoginBox,
@@ -53,11 +52,15 @@ const Register = () => {
 
     axios
       .post('https://ka-users-api.herokuapp.com/users', { user: { ...values } })
-      .then((res) => {
-        console.log('Success:', values);
-      })
-      .then((res) => {
+      .then(() => {
         history.push('/login');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuário cadastrado com sucesso!',
+          showConfirmButton: false,
+          timer: 1300,
+        });
       })
       .catch((error) => {
         if (error.response.data.user == 'has already been taken') {
@@ -100,7 +103,7 @@ const Register = () => {
                               required: 'Nome Obrigatório!',
                               pattern: {
                                 value: /^[a-zA-Z´]+\s+[a-zA-Z´]{1,}$/,
-                                message: 'Necessário Nome e Sobrenome, apenas Letras!',
+                                message: 'Necessário Nome e Sobrenome, apenas letras!',
                               },
                             })}
                           />
@@ -168,9 +171,8 @@ const Register = () => {
                             <option value="matematica">Matemática</option>
                             <option value="medicina">Medicina</option>
                             <option value="quimiia">Química</option>
+                            <option value="religiao">Religião e Espiritualidade</option>
                           </select>
-
-
                         </Form.Field>
                       </Form.Group>
                       <Form.Group>
@@ -179,6 +181,7 @@ const Register = () => {
                           <input
                             type="password"
                             name="password"
+                            type="password"
                             placeholder="Senha"
                             ref={register({
                               required: 'Senha Obrigatória!',
