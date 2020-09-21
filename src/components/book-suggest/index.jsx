@@ -24,6 +24,7 @@ const BookSuggest = () => {
 
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
+  const userBooks = useSelector((state) => state.userBooks);
 
   useEffect(() => {
     if (session.user.about !== null || undefined) {
@@ -35,77 +36,90 @@ const BookSuggest = () => {
         })
         .catch((error) => console.log(error));
     }
-  }, [session]);
+  }, [session.user.about]);
 
   return (
     <>
       {session.user.about.length === 0 ? (
         <h3>Atualize os interesses para receber sugestões!</h3>
       ) : (
-        <h3>Sugestão de Livros para Você!</h3>
-      )}
+          <h3>Sugestão de Livros para Você!</h3>
+        )}
       {loading ? (
         <Loader active inline="centered" />
       ) : (
-        <Styled.MainWrapper>
-          <CardsWrapper>
-            {newSuggestBooks &&
-              newSuggestBooks.map((book) => {
-                const content = (
-                  <div>
-                    <Header as="h3" inverted>
-                      Quero Ler!
+          <Styled.MainWrapper>
+            <CardsWrapper>
+              {newSuggestBooks &&
+                newSuggestBooks.map((book) => {
+                  const content = (
+                    <div>
+                      <Header as="h3" inverted>
+                        Quero Ler!
                     </Header>
-                    <Button
-                      icon="plus"
-                      primary
-                      onClick={() => {
-                        Swal.fire({
-                          position: 'top-end',
-                          icon: 'success',
-                          title: 'Livro adicionado a sua prateleira!',
-                          showConfirmButton: false,
-                          timer: 1300,
-                        });
-                        dispatch(requestAddBook(book.volumeInfo, session));
-                      }}
-                    />
-                  </div>
-                );
+                      <Button
+                        icon="plus"
+                        primary
+                        onClick={() => {
+                          const alreadyAdd = userBooks.some((userBook) => userBook.title === book.volumeInfo.title)
 
-                return (
-                  <BookCard key={book.id}>
-                    <div className="meta-info">
-                      <Popup
-                        content={book.volumeInfo.title}
-                        trigger={<strong>{book.volumeInfo.title}</strong>}
+                          if (alreadyAdd) {
+                            return Swal.fire({
+                              position: 'top-end',
+                              icon: 'error',
+                              title: 'Livro já adicionado a sua prateleira!',
+                              showConfirmButton: false,
+                              timer: 1300
+                            })
+                          }
+
+                          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Livro adicionado a sua prateleira!',
+                            showConfirmButton: false,
+                            timer: 1300
+                          })
+                          dispatch(requestAddBook(book.volumeInfo, session));
+                        }
+                        }
                       />
-
-                      {book.volumeInfo.authors ? (
-                        book.volumeInfo.authors.map((author, key) => (
-                          <span key={key}>{author}</span>
-                        ))
-                      ) : (
-                        <span>Autor Desconhecido</span>
-                      )}
                     </div>
-                    <Dimmer.Dimmable
-                      as={Image}
-                      dimmer={{ active: active === book.id, content }}
-                      onMouseEnter={() => setActive(book.id)}
-                      onMouseLeave={() => setActive(false)}
-                      src={
-                        book.volumeInfo.imageLinks
-                          ? book.volumeInfo.imageLinks.thumbnail
-                          : bookNotFound
-                      }
-                    />
-                  </BookCard>
-                );
-              })}
-          </CardsWrapper>
-        </Styled.MainWrapper>
-      )}
+                  );
+
+                  return (
+                    <BookCard key={book.id}>
+                      <div className="meta-info">
+                        <Popup
+                          content={book.volumeInfo.title}
+                          trigger={<strong>{book.volumeInfo.title}</strong>}
+                        />
+
+                        {book.volumeInfo.authors ? (
+                          book.volumeInfo.authors.map((author, key) => (
+                            <span key={key}>{author}</span>
+                          ))
+                        ) : (
+                            <span>Autor Desconhecido</span>
+                          )}
+                      </div>
+                      <Dimmer.Dimmable
+                        as={Image}
+                        dimmer={{ active: active === book.id, content }}
+                        onMouseEnter={() => setActive(book.id)}
+                        onMouseLeave={() => setActive(false)}
+                        src={
+                          book.volumeInfo.imageLinks
+                            ? book.volumeInfo.imageLinks.thumbnail
+                            : bookNotFound
+                        }
+                      />
+                    </BookCard>
+                  );
+                })}
+            </CardsWrapper>
+          </Styled.MainWrapper>
+        )}
     </>
   );
 };
