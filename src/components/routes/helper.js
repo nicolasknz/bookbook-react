@@ -1,4 +1,4 @@
-import { Home, Login, Register, Shelves, Timeline, Profile } from '../../pages/';
+import { BookSearch, Login, Register, Shelves, Timeline, Profile } from '../../pages/';
 
 export const routesNotAuth = [
   { path: '/register', name: 'Register', page: Register },
@@ -7,8 +7,8 @@ export const routesNotAuth = [
 
 export const routesAuth = [
   { path: '/', name: 'Timeline', page: Timeline },
-  { path: '/home', name: 'Home', page: Home },
-  { path: '/shelves', name: 'Timeline', page: Shelves },
+  { path: '/book-search', name: 'Book Search', page: BookSearch },
+  { path: '/shelves', name: 'Shelves', page: Shelves },
   { path: '/profile', name: 'Profile', page: Profile },
   //   { path: "/Perfil", name: "Perfil", page: Perfil },
 ];

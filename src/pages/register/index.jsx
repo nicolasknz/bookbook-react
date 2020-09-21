@@ -13,16 +13,20 @@
     - Coloquei o Link no link de voltar para login
 */
 
+/*
+Willian - 18/09/20 (concluído)
+  Sugestão de livros:
+  - Adicionado um campo select para armazenar área de interesse no about
+*/
+
 import React, { useState } from 'react';
-import { ContainerForm, FormTitle } from './styles';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import 'semantic-ui-css/semantic.min.css';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 import {
   ImageBox,
-  LogoLogin,
   Title,
   StyledButton,
   LoginBox,
@@ -35,10 +39,7 @@ import {
 } from './styles';
 
 import StyledContainerCenter from '../../components/styled/styled-container';
-
-import { Grid, Form } from 'semantic-ui-react';
-
-import logo from '../../assets/img/logo_com_transparencia.png';
+import { Grid, Form, Select } from 'semantic-ui-react';
 import loginIllustration from '../../assets/img/register2.svg';
 
 const Register = () => {
@@ -48,13 +49,18 @@ const Register = () => {
   const { getValues, handleSubmit, register, errors } = useForm();
 
   const onSubmit = (values) => {
+
     axios
       .post('https://ka-users-api.herokuapp.com/users', { user: { ...values } })
-      .then((res) => {
-        console.log('Success:', values);
-      })
-      .then((res) => {
+      .then(() => {
         history.push('/login');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuário cadastrado com sucesso!',
+          showConfirmButton: false,
+          timer: 1300,
+        });
       })
       .catch((error) => {
         if (error.response.data.user == 'has already been taken') {
@@ -97,7 +103,7 @@ const Register = () => {
                               required: 'Nome Obrigatório!',
                               pattern: {
                                 value: /^[a-zA-Z´]+\s+[a-zA-Z´]{1,}$/,
-                                message: 'Necessário Nome e Sobrenome, apenas Letras!',
+                                message: 'Necessário Nome e Sobrenome, apenas letras!',
                               },
                             })}
                           />
@@ -126,30 +132,56 @@ const Register = () => {
                           )}
                         </Form.Field>
                       </Form.Group>
-                      <Form.Field required>
-                        <label>E-mail</label>
-                        <input
-                          name="email"
-                          placeholder="email@email.com"
-                          ref={register({
-                            required: 'E-mail Obrigatório!',
-                            pattern: {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: 'Formato Inválido!',
-                            },
-                          })}
-                        />
-                        {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-                        {requestError === 'E-mail já cadastrado!' && (
-                          <ErrorMessage>{requestError}</ErrorMessage>
-                        )}
-                      </Form.Field>
+                      <Form.Group>
+                        <Form.Field width={8} required>
+                          <label>E-mail</label>
+                          <input
+                            name="email"
+                            placeholder="email@email.com"
+                            ref={register({
+                              required: 'E-mail Obrigatório!',
+                              pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: 'Formato Inválido!',
+                              },
+                            })}
+                          />
+                          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+                          {requestError === 'E-mail já cadastrado!' && (
+                            <ErrorMessage>{requestError}</ErrorMessage>
+                          )}
+                        </Form.Field>
+                        <Form.Field width={8} required>
+                          <label>Área de interesse</label>
+                          <select
+                            name="about"
+                            ref={register({
+                              required: 'Escolha Obrigatória!'
+                            })}
+                          >
+                            <option value="administracao">Administração</option>
+                            <option value="arte">Arte</option>
+                            <option value="biologia">Biologia</option>
+                            <option value="computacao">Computação</option>
+                            <option value="direito">Direito</option>
+                            <option value="economia">Economia</option>
+                            <option value="filosofia">Filosofia</option>
+                            <option value="geografia">Geografia</option>
+                            <option value="historia">História</option>
+                            <option value="matematica">Matemática</option>
+                            <option value="medicina">Medicina</option>
+                            <option value="quimiia">Química</option>
+                            <option value="religiao">Religião e Espiritualidade</option>
+                          </select>
+                        </Form.Field>
+                      </Form.Group>
                       <Form.Group>
                         <Form.Field width={8} required>
                           <label>Senha</label>
                           <input
                             type="password"
                             name="password"
+                            type="password"
                             placeholder="Senha"
                             ref={register({
                               required: 'Senha Obrigatória!',
