@@ -32,7 +32,7 @@ const Shelves = () => {
             <Styled.MainWrapperEmpty>
               <h1> Essa prateleira está vazia </h1>
               <Styled.Search>
-                <Link to="/home">
+                <Link to="/book-search">
                   Clique aqui para pesquisar os seus livros favoritos e adicionar a sua prateleira{' '}
                 </Link>
               </Styled.Search>

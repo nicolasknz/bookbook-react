@@ -13,13 +13,13 @@ import BookSuggest from '../book-suggest';
 
 /*
   Nicolas - 10/09/20 (concluído)
-  Buscador de livres:
+  Buscador de livros:
     -Criar um input de busca 
     -Buscar na API do google os livros
     -Responsivo 
 
   Bruno - 14/09/20 (concluído)
-  Buscador de livres:
+  Buscador de livros:
     -Adicionado onClick para adicionar a prateleira
     -Adicionado Dimmer
 
