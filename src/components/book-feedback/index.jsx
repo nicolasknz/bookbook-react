@@ -19,7 +19,6 @@ const BookFeedback = ({ book }) => {
   const [comment, setComment] = useState("")
   const [rating, setRating] = useState(0)
 
-  // change
   const changeComment = (e) => {
     e.preventDefault()
     setComment(e.target.value)

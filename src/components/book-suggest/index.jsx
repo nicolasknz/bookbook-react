@@ -17,6 +17,7 @@ Willian - 18/09/20 (concluído)
   - Renderizar livros de sugestão 
 */
 
+
 const BookSuggest = () => {
   const [newSuggestBooks, setNewSuggestBooks] = useState([]);
   const [active, setActive] = useState(false);
@@ -31,8 +32,8 @@ const BookSuggest = () => {
       axios
         .get(`https://www.googleapis.com/books/v1/volumes?q=${session.user.about}`)
         .then((res) => {
-          setLoading(false);
           setNewSuggestBooks(res.data.items);
+          setLoading(false);
         })
         .catch((error) => console.log(error));
     }
