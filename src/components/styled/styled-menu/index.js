@@ -8,6 +8,7 @@ const StyledMenu = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: -10px;
+  z-index: 10;
 
   @media (max-width: 480px) {
     padding: 0px 10px;

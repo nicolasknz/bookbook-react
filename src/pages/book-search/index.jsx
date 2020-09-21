@@ -1,7 +1,7 @@
 import React from 'react';
 import BookSearcher from '../../components/book-searcher';
 
-const Home = () => {
+const BookSearch = () => {
   return (
     <>
       <BookSearcher />
@@ -9,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default BookSearch;
