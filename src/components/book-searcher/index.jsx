@@ -32,6 +32,7 @@ const BookSearcher = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [books, setBooks] = useState([]);
   const [active, setActive] = useState(false);
+  const userBooks = useSelector((state) => state.userBooks);
 
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
@@ -75,6 +76,18 @@ const BookSearcher = () => {
                   icon="plus"
                   primary
                   onClick={() => {
+                    const alreadyAdd = userBooks.some((userBook) => userBook.title === book.volumeInfo.title)
+
+                    if (alreadyAdd) {
+                      return Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Livro já adicionado a sua prateleira!',
+                        showConfirmButton: false,
+                        timer: 1300
+                      })
+                    }
+
                     Swal.fire({
                       position: 'top-end',
                       icon: 'success',
@@ -83,7 +96,8 @@ const BookSearcher = () => {
                       timer: 1300
                     })
                     dispatch(requestAddBook(book.volumeInfo, session));
-                  }}
+                  }
+                  }
                 />
               </div>
             );
@@ -99,8 +113,8 @@ const BookSearcher = () => {
                   {book.volumeInfo.authors ? (
                     book.volumeInfo.authors.map((author, key) => <span key={key}>{author}</span>)
                   ) : (
-                    <span>Autor Desconhecido</span>
-                  )}
+                      <span>Autor Desconhecido</span>
+                    )}
                 </div>
                 <Dimmer.Dimmable
                   as={Image}

@@ -24,6 +24,7 @@ const BookSuggest = () => {
 
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
+  const userBooks = useSelector((state) => state.userBooks);
 
   useEffect(() => {
     if (session.user.about !== null || undefined) {
@@ -62,15 +63,28 @@ const BookSuggest = () => {
                         icon="plus"
                         primary
                         onClick={() => {
+                          const alreadyAdd = userBooks.some((userBook) => userBook.title === book.volumeInfo.title)
+
+                          if (alreadyAdd) {
+                            return Swal.fire({
+                              position: 'top-end',
+                              icon: 'error',
+                              title: 'Livro já adicionado a sua prateleira!',
+                              showConfirmButton: false,
+                              timer: 1300
+                            })
+                          }
+
                           Swal.fire({
                             position: 'top-end',
                             icon: 'success',
                             title: 'Livro adicionado a sua prateleira!',
                             showConfirmButton: false,
-                            timer: 1300,
-                          });
+                            timer: 1300
+                          })
                           dispatch(requestAddBook(book.volumeInfo, session));
-                        }}
+                        }
+                        }
                       />
                     </div>
                   );
