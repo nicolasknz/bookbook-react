@@ -10,7 +10,11 @@ import * as Styled from './styles';
 import userDefault from '../../assets/img/userDefault.jpg';
 
 const UserEdit = ({ setOpen }) => {
-  const [showButton, setShowButton] = useState(true);
+  const [showButton, setShowButton] = useState({
+    name: true,
+    email: true,
+    user: true,
+  });
   const { token, user } = useSelector((state) => state.session);
 
   const [errorMessage, setErrorMessage] = useState({
@@ -19,11 +23,12 @@ const UserEdit = ({ setOpen }) => {
     user: false,
     default: false,
   });
+
   const [newUser, setNewUser] = useState({
     name: user.name,
     user: user.user,
     about: user.about,
-    image: user.image,
+    image: user.image_url,
     email: user.email,
   });
 
@@ -33,12 +38,12 @@ const UserEdit = ({ setOpen }) => {
     const regex = new RegExp(/^[a-zA-Z´]+\s+[a-zA-Z´]{1,}$/);
 
     if (regex.test(name)) {
-      setShowButton(true);
-      setNewUser({ name: e.target.value });
-      setErrorMessage({ name: false });
+      setShowButton({ ...showButton, name: true });
+      setNewUser({ ...newUser, name: e.target.value });
+      setErrorMessage({ ...errorMessage, name: false });
     } else {
-      setShowButton(false);
-      setErrorMessage({ name: true });
+      setShowButton({ ...showButton, name: false });
+      setErrorMessage({ ...errorMessage, name: true });
     }
   };
 
@@ -48,12 +53,12 @@ const UserEdit = ({ setOpen }) => {
     const regex = new RegExp(/^[a-zA-Z\d]{1,}$/);
 
     if (regex.test(user)) {
-      setShowButton(true);
-      setNewUser({ user: e.target.value });
-      setErrorMessage({ user: false });
+      setShowButton({ ...showButton, user: true });
+      setNewUser({ ...newUser, user: e.target.value });
+      setErrorMessage({ ...errorMessage, user: false });
     } else {
-      setShowButton(false);
-      setErrorMessage({ user: true });
+      setShowButton({ ...showButton, user: false });
+      setErrorMessage({ ...errorMessage, user: true });
     }
   };
 
@@ -63,23 +68,23 @@ const UserEdit = ({ setOpen }) => {
     const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i);
 
     if (regex.test(email)) {
-      setShowButton(true);
-      setNewUser({ email: e.target.value });
-      setErrorMessage({ email: false });
+      setShowButton({ ...showButton, email: true });
+      setNewUser({ ...newUser, email: e.target.value });
+      setErrorMessage({ ...errorMessage, email: false });
     } else {
-      setShowButton(false);
-      setErrorMessage({ email: true });
+      setShowButton({ ...showButton, email: false });
+      setErrorMessage({ ...errorMessage, email: true });
     }
   };
 
   const changeAbout = (e) => {
     e.preventDefault();
-    setNewUser({ about: e.target.value });
+    setNewUser({ ...newUser, about: e.target.value });
   };
 
   const changeImage = (e) => {
     e.preventDefault();
-    setNewUser({ image: e.target.value });
+    setNewUser({ ...newUser, image_url: e.target.value });
   };
 
   const onSubmit = () => {
@@ -90,7 +95,7 @@ const UserEdit = ({ setOpen }) => {
           user: {
             name: newUser.name,
             user: newUser.user,
-            image_url: newUser.image,
+            image_url: newUser.image_url,
             email: newUser.email,
             about: newUser.about,
           },
@@ -113,12 +118,12 @@ const UserEdit = ({ setOpen }) => {
         }, 1500);
       })
       .catch((err) => {
-        if (err.response.status === 400) {
+        if (err.response.status === 422) {
           setErrorMessage({ default: true });
         }
       });
   };
-
+  console.log(showButton);
   return (
     <>
       <Modal.Header>Alterar informações</Modal.Header>
@@ -161,30 +166,35 @@ const UserEdit = ({ setOpen }) => {
                 />
               </Form.Group>
               <label>
-                <b>Meus interesse  </b> (Ex: Artes, História, Quadrinhos, Romance, etc..)
+                <b>Meus interesse </b> (Ex: Artes, História, Quadrinhos, Romance, etc..)
               </label>
               <TextArea label="Sobre você" onChange={changeAbout} defaultValue={user.about} />
               <Styled.ButtonContainer>
                 {errorMessage.name && (
-                  <Styled.ErrorMessage> Nome: nome inválido </Styled.ErrorMessage>
+                  <Styled.ErrorMessage>
+                    Nome: nome inválido <br />
+                  </Styled.ErrorMessage>
                 )}
                 {errorMessage.user && (
                   <Styled.ErrorMessage>
-                    Usuário: formato inválido (apenas letras e números)
+                    Usuário: formato inválido (apenas letras e números) <br />
                   </Styled.ErrorMessage>
                 )}
                 {errorMessage.email && (
-                  <Styled.ErrorMessage> E-mail: formato inválido </Styled.ErrorMessage>
+                  <Styled.ErrorMessage>
+                    E-mail: formato inválido <br />
+                  </Styled.ErrorMessage>
                 )}
                 {errorMessage.default && (
-                  <Styled.ErrorMessage> Nenhuma informação foi alterada. </Styled.ErrorMessage>
+                  <Styled.ErrorMessage> Esse nome de usuário já existe. </Styled.ErrorMessage>
                 )}
               </Styled.ButtonContainer>
               <Styled.ButtonContainer>
                 <Button color="red" onClick={() => setOpen(false)}>
                   Cancelar
                 </Button>
-                {showButton && (
+
+                {showButton.name && showButton.user && showButton.email && (
                   <Button
                     content="Alterar"
                     labelPosition="right"

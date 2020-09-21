@@ -97,5 +97,5 @@ export const Login = styled.h5`
 
 export const ErrorMessage = styled.span`
   color: red;
-  font-size: 12px;
+  font-size: 13px;
 `;
