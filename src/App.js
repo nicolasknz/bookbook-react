@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { Routes } from './components/';
 import { requestUserBookList } from './redux/actions/user-books';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,14 +9,14 @@ const App = () => {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.session);
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(requestUserBookList({ token, user }));
     axios
       .get(`https://ka-users-api.herokuapp.com/users/${user.id}`, {
         headers: { Authorization: token },
       })
       .then(({ data }) => dispatch(updateInfo(data)));
-  }, [user]);
+  }, []);
 
   return (
     <>

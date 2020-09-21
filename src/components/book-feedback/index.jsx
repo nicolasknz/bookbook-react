@@ -1,10 +1,3 @@
-/*
-  Willian - 17/09/20 (concluído)
-  Cadastro de Usuário:
-    -Criar um formulário dentro de um modal
-    -Fazer envio das Informações para API  
-*/
-
 import React, { useState } from "react";
 import { Header, Image, Modal, Form, TextArea, Rating } from 'semantic-ui-react';
 import axios from "axios";
