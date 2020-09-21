@@ -29,7 +29,7 @@ const OtherUsers = (props) => {
       <Modal.Header>
         {' '}
         <StyledCard>
-          <div className="user" style={{ border: 0 }}>
+          <div className="user" style={{ border: 0, textTransform: 'capitalize' }}>
             <img src={props.photo ? props.photo : userDefault} className="user" />
             <div className="userData">
               <span style={{ marginTop: 'auto', marginBottom: 'auto' }}>{props.name}</span>
